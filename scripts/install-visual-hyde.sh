@@ -31,10 +31,13 @@ for path in \
   "$HOME/.config/qt6ct" \
   "$HOME/.config/Kvantum" \
   "$HOME/.config/lf" \
+  "$HOME/.config/swaync" \
   "$HOME/.local/share/hyde" \
   "$HOME/.local/share/wallbash" \
   "$HOME/.config/hypr/configs/autostart.conf" \
-  "$HOME/.config/hypr/configs/binds.conf"; do
+  "$HOME/.config/hypr/configs/binds.conf" \
+  "$HOME/.config/hypr/configs/layer_rules.conf" \
+  "$HOME/.config/hypr/scripts/apply_wal_theme.sh"; do
   backup_path "$path"
 done
 
@@ -90,17 +93,29 @@ for root in \
     -exec rm -rf -- {} + 2>/dev/null || true
 done
 
-# Remove apenas entradas associadas aos recursos excluidos e troca o atalho
-# SUPER+E do antigo "kitty -e lf" para o Dolphin.
-AUTOSTART="$HOME/.config/hypr/configs/autostart.conf"
-BINDS="$HOME/.config/hypr/configs/binds.conf"
+# Apaga a configuracao local do SwayNC e remove qualquer referencia ativa ou
+# comentada nos arquivos do Hyprland e nos scripts auxiliares.
+rm -rf "$HOME/.config/swaync"
 
-if [[ -f "$AUTOSTART" ]]; then
-  sed -i -E '/swaync|swaync-client|wlogout|powermenu|power-menu|systemctl[[:space:]]+hibernate|suspend-then-hibernate/d' "$AUTOSTART"
+while IFS= read -r -d '' file; do
+  sed -i -E '/swaync|swaync-client|swaync-notification-window|swaync-control-center/d' "$file"
+done < <(find "$HOME/.config/hypr" -type f -print0 2>/dev/null)
+
+# Remove referencias antigas que o HyDE possa ter copiado em migracoes.
+if [[ -d "$HOME/.local/share/hyde/migration" ]]; then
+  while IFS= read -r -d '' file; do
+    sed -i -E '/swaync|swaync-client|swaync-notification-window|swaync-control-center/d' "$file"
+  done < <(find "$HOME/.local/share/hyde/migration" -type f -print0 2>/dev/null)
 fi
 
+# Remove menu de energia/logout e hibernacao dos arquivos locais.
+while IFS= read -r -d '' file; do
+  sed -i -E '/wlogout|powermenu|power-menu|systemctl[[:space:]]+hibernate|suspend-then-hibernate/d' "$file"
+done < <(find "$HOME/.config/hypr" -type f -print0 2>/dev/null)
+
+# Troca SUPER+E do antigo "kitty -e lf" para o Dolphin.
+BINDS="$HOME/.config/hypr/configs/binds.conf"
 if [[ -f "$BINDS" ]]; then
-  sed -i -E '/swaync|swaync-client|wlogout|powermenu|power-menu|systemctl[[:space:]]+hibernate|suspend-then-hibernate/d' "$BINDS"
   sed -i -E 's|^bind[[:space:]]*=[[:space:]]*\$mainMod,[[:space:]]*E,[[:space:]]*exec,.*$|bind = $mainMod, E, exec, dolphin|' "$BINDS"
 fi
 
@@ -108,8 +123,10 @@ fi
 xdg-mime default org.kde.dolphin.desktop inode/directory || true
 xdg-mime default org.kde.dolphin.desktop application/x-gnome-saved-search || true
 
-# Encerra os processos removidos na sessao atual.
+# Encerra e bloqueia o servidor de notificacoes.
 pkill swaync 2>/dev/null || true
+systemctl --user disable --now swaync.service 2>/dev/null || true
+systemctl --user mask swaync.service 2>/dev/null || true
 pkill wlogout 2>/dev/null || true
 pkill -x lf 2>/dev/null || true
 
@@ -122,5 +139,6 @@ sudo systemctl mask \
 
 printf '\nCamada visual instalada. Backup salvo em:\n%s\n' "$BACKUP_DIR"
 printf 'Dolphin definido no SUPER+E e como gerenciador de arquivos padrao.\n'
-printf 'O lf, notificacoes, menu de energia/logout e hibernacao foram removidos.\n'
+printf 'SwayNC e todas as referencias de notificacao foram removidos.\n'
+printf 'O lf, menu de energia/logout e hibernacao foram removidos.\n'
 printf 'Reinicie a sessao do Hyprland para concluir.\n'
