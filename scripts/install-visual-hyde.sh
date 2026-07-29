@@ -30,6 +30,7 @@ for path in \
   "$HOME/.config/kitty" \
   "$HOME/.config/qt6ct" \
   "$HOME/.config/Kvantum" \
+  "$HOME/.config/lf" \
   "$HOME/.local/share/hyde" \
   "$HOME/.local/share/wallbash" \
   "$HOME/.config/hypr/configs/autostart.conf" \
@@ -41,6 +42,12 @@ sudo pacman -S --needed --noconfirm \
   git rsync rofi swww jq imagemagick \
   kitty dolphin dolphin-plugins ffmpegthumbs kdegraphics-thumbnailers \
   qt6ct kvantum breeze breeze-icons ttf-cascadia-code-nerd
+
+# Remove o gerenciador antigo (lf), se estiver instalado.
+if pacman -Qq lf >/dev/null 2>&1; then
+  sudo pacman -Rns --noconfirm lf
+fi
+rm -rf "$HOME/.config/lf"
 
 git clone --filter=blob:none --no-checkout "$HYDE_REPO" "$TMP_DIR/HyDE"
 git -C "$TMP_DIR/HyDE" checkout "$HYDE_REF"
@@ -83,20 +90,28 @@ for root in \
     -exec rm -rf -- {} + 2>/dev/null || true
 done
 
-# Remove apenas entradas de inicializacao e atalhos associados aos recursos
-# que o usuario pediu para excluir. Outros atalhos permanecem intactos.
-for file in \
-  "$HOME/.config/hypr/configs/autostart.conf" \
-  "$HOME/.config/hypr/configs/binds.conf"; do
-  [[ -f "$file" ]] || continue
-  sed -i -E \
-    '/swaync|swaync-client|wlogout|powermenu|power-menu|systemctl[[:space:]]+hibernate|suspend-then-hibernate/d' \
-    "$file"
-done
+# Remove apenas entradas associadas aos recursos excluidos e troca o atalho
+# SUPER+E do antigo "kitty -e lf" para o Dolphin.
+AUTOSTART="$HOME/.config/hypr/configs/autostart.conf"
+BINDS="$HOME/.config/hypr/configs/binds.conf"
 
-# Encerra os processos na sessao atual.
+if [[ -f "$AUTOSTART" ]]; then
+  sed -i -E '/swaync|swaync-client|wlogout|powermenu|power-menu|systemctl[[:space:]]+hibernate|suspend-then-hibernate/d' "$AUTOSTART"
+fi
+
+if [[ -f "$BINDS" ]]; then
+  sed -i -E '/swaync|swaync-client|wlogout|powermenu|power-menu|systemctl[[:space:]]+hibernate|suspend-then-hibernate/d' "$BINDS"
+  sed -i -E 's|^bind[[:space:]]*=[[:space:]]*\$mainMod,[[:space:]]*E,[[:space:]]*exec,.*$|bind = $mainMod, E, exec, dolphin|' "$BINDS"
+fi
+
+# Define o Dolphin como gerenciador de arquivos padrao.
+xdg-mime default org.kde.dolphin.desktop inode/directory || true
+xdg-mime default org.kde.dolphin.desktop application/x-gnome-saved-search || true
+
+# Encerra os processos removidos na sessao atual.
 pkill swaync 2>/dev/null || true
 pkill wlogout 2>/dev/null || true
+pkill -x lf 2>/dev/null || true
 
 # Hibernacao desativada permanentemente ate ser desmascarada manualmente.
 # A suspensao normal continua disponivel.
@@ -106,5 +121,6 @@ sudo systemctl mask \
   suspend-then-hibernate.target
 
 printf '\nCamada visual instalada. Backup salvo em:\n%s\n' "$BACKUP_DIR"
-printf 'Notificacoes, menu de energia/logout e hibernacao foram removidos.\n'
+printf 'Dolphin definido no SUPER+E e como gerenciador de arquivos padrao.\n'
+printf 'O lf, notificacoes, menu de energia/logout e hibernacao foram removidos.\n'
 printf 'Reinicie a sessao do Hyprland para concluir.\n'
