@@ -1,36 +1,31 @@
 # Integração visual seletiva do HyDE
 
-Esta branch adiciona somente os componentes visuais solicitados:
+Esta branch instala somente a camada visual solicitada:
 
-- Rofi Launcher e os layouts do HyDE;
-- Theme Select;
-- Wallpaper Select;
-- Launcher Select;
-- Wallbash Modes;
+- Rofi Launcher;
+- seleção e importação de temas;
+- seleção de wallpaper;
+- Wallbash;
 - aparência do Kitty;
-- integração visual Qt/Kvantum para o Dolphin.
+- integração Qt/Kvantum para o Dolphin;
+- suporte Wallbash para o Antigravity IDE.
 
-A integração não copia a configuração do Hyprland fornecida pelo HyDE. Assim, permanecem intactos:
+A configuração principal do Hyprland não é substituída. Monitores, teclado, mouse, workspaces e preferências pessoais permanecem intactos.
 
-- monitores;
-- atalhos;
-- teclado e mouse;
-- workspaces;
-- regras e preferências pessoais do Hyprland.
+## Recursos removidos
 
-## Notificações
+O instalador remove ou desativa:
 
-O `swaync` foi removido do autostart do Hyprstellar. O instalador também encerra uma instância existente. O módulo **Notification Action** do HyDE não é instalado nem configurado.
+- `swaync`, `mako`, `dunst` e `fnott`;
+- central de notificações;
+- menu de energia/logout;
+- `lf`;
+- hibernação;
+- ações automáticas por inatividade.
 
-## Hibernação
+O `hypridle` é encerrado e mascarado, e referências de autostart são removidas. Assim, o computador não bloqueia, suspende, hiberna ou desliga automaticamente por falta de atividade.
 
-O instalador mascara:
-
-- `hibernate.target`;
-- `hybrid-sleep.target`;
-- `suspend-then-hibernate.target`.
-
-A suspensão normal continua disponível.
+A suspensão manual continua disponível. A hibernação permanece mascarada por decisão desta branch.
 
 ## Instalação
 
@@ -41,7 +36,7 @@ chmod +x scripts/install-visual-hyde.sh
 ./scripts/install-visual-hyde.sh
 ```
 
-Antes de copiar os componentes visuais, o script cria um backup em:
+Antes das alterações, o script cria um backup em:
 
 ```text
 ~/.local/state/visual-hyde-backup/
@@ -49,8 +44,38 @@ Antes de copiar os componentes visuais, o script cria um backup em:
 
 ## Atalhos
 
-Os arquivos de atalhos não são substituídos. Depois da instalação, os seletores do HyDE podem precisar ser associados manualmente aos atalhos que você escolher.
+Os arquivos de atalhos não são substituídos integralmente. O instalador apenas garante:
 
-## Reinstalação após formatação
+```ini
+bind = $mainMod, E, exec, dolphin
+```
 
-Depois de instalar o Arch e clonar este repositório, execute novamente o instalador. Ele reinstala os pacotes visuais, restaura os componentes escolhidos e desativa a hibernação.
+Os atalhos dos seletores de tema, wallpaper e launcher podem ser associados manualmente.
+
+## Temas
+
+Para importar temas:
+
+```bash
+hyde-shell pyinit
+hyde-shell theme.import --select
+```
+
+Para trocar o tema instalado:
+
+```bash
+hyde-shell theme.select
+```
+
+Para aplicar Wallbash aos aplicativos:
+
+```bash
+hyde-shell wallbash kitty
+hyde-shell wallbash qtct
+hyde-shell wallbash code
+hyde-shell wallbash chrome
+```
+
+## Reinstalação
+
+Depois de formatar o sistema e clonar o repositório, execute novamente o instalador. Ele reinstala a camada visual, restaura os ajustes seletivos e mantém notificações, hibernação e ações automáticas por inatividade desativadas.
