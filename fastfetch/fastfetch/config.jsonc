@@ -1,0 +1,69 @@
+{
+  "logo": {
+    "source": "/home/sunny/.config/fastfetch/brand.txt",
+    "color": {
+      "1": "red"
+    },
+    "padding": {
+      "right": 3
+    }
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "\u001b[1;31msunny@cachyos\u001b[0m"
+    },
+    "separator",
+    {
+      "type": "os",
+      "key": "  OS"
+    },
+    {
+      "type": "kernel",
+      "key": "  Kernel"
+    },
+    {
+      "type": "shell",
+      "key": "  Shell"
+    },
+    {
+      "type": "display",
+      "key": "  Display",
+      "compactType": "original-with-refresh-rate"
+    },
+    {
+      "type": "wm",
+      "key": "  WM"
+    },
+    {
+      "type": "terminal",
+      "key": "  Terminal"
+    },
+    "separator",
+    {
+      "type": "cpu",
+      "key": "  CPU",
+      "showPeCoreCount": false
+    },
+    {
+      "type": "gpu",
+      "key": "  GPU",
+      "detectionMethod": "pci"
+    },
+    {
+      "type": "memory",
+      "key": "  RAM"
+    },
+    {
+      "type": "disk",
+      "key": "  Disk",
+      "folders": "/"
+    },
+    {
+      "type": "localip",
+      "key": "  IP",
+      "showIpv4": true,
+      "showIpv6": false
+    }
+  ]
+}

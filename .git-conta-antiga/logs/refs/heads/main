@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 668a061c4c47aa12c71e1627db749e41401eba6b 21st-w <asmagic111@gmail.com> 1780073570 -0300	commit (initial): feat: dotfiles iniciais - hyprland + waybar
+668a061c4c47aa12c71e1627db749e41401eba6b c654ed6f7edb9212f952f38dd8d9a240d85e56d0 21st-w <asmagic111@gmail.com> 1780077909 -0300	commit: fix: restaura hyprland.conf e autostart após reset acidental
+c654ed6f7edb9212f952f38dd8d9a240d85e56d0 e11f8850b5b122c2609a8f37cd3548565e79c538 21st-w <asmagic111@gmail.com> 1780096632 -0300	commit: feat: glassmorphism, kitty, mako, fuzzel, fastfetch, matugen pipeline
+e11f8850b5b122c2609a8f37cd3548565e79c538 e074add0cfc26913ab5a4ff006c33638b76fa981 21st-w <asmagic111@gmail.com> 1780096777 -0300	commit: feat: hyprlock, hypridle, waybar watchdog, fastfetch no terminal
+e074add0cfc26913ab5a4ff006c33638b76fa981 5738cc3c4a399860f8850c0127c851c56d9d9b02 21st-w <asmagic111@gmail.com> 1780107205 -0300	commit: feat: kitty, mako, fuzzel, fish, matugen pipeline, keybinds, windowrules 0.55

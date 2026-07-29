@@ -1,0 +1,22 @@
+source ~/.config/lf/configs/commands
+source ~/.config/lf/configs/keymaps
+source ~/.config/lf/configs/options
+
+# Delete selected file with Delete key
+
+# Delete selected file with Delete key
+
+# Move selected file to trash with Delete key
+map <delete> $trash-put -- "$fx"
+map <DELETE> $trash-put -- "$fx"
+
+# Open selected file or directory with Enter
+
+# Open selected file or directory with Enter
+map <enter> open
+map <ENTER> open
+
+# Restore last trashed file/folder with Ctrl+Z
+map <c-z> $~/.config/lf/scripts/restore-last-trash.sh
+map <C-z> $~/.config/lf/scripts/restore-last-trash.sh
+map <C-Z> $~/.config/lf/scripts/restore-last-trash.sh

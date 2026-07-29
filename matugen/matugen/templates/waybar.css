@@ -1,0 +1,7 @@
+@define-color primary    {{colors.primary.default.hex}};
+@define-color secondary  {{colors.secondary.default.hex}};
+@define-color tertiary   {{colors.tertiary.default.hex}};
+@define-color background {{colors.background.default.hex}};
+@define-color surface    {{colors.surface.default.hex}};
+@define-color on_bg      {{colors.on_background.default.hex}};
+@define-color on_surface {{colors.on_surface.default.hex}};
