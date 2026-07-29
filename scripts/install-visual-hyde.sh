@@ -32,6 +32,7 @@ for path in \
   "$HOME/.config/Kvantum" \
   "$HOME/.config/lf" \
   "$HOME/.config/swaync" \
+  "$HOME/.local/bin/hyde-shell" \
   "$HOME/.local/share/hyde" \
   "$HOME/.local/share/wallbash" \
   "$HOME/.config/hypr/configs/autostart.conf" \
@@ -70,6 +71,10 @@ copy_if_present "$TMP_DIR/HyDE/Configs/.config/hyde" "$HOME/.config/hyde"
 copy_if_present "$TMP_DIR/HyDE/Configs/.local/share/hyde" "$HOME/.local/share/hyde"
 copy_if_present "$TMP_DIR/HyDE/Configs/.local/share/wallbash" "$HOME/.local/share/wallbash"
 copy_if_present "$TMP_DIR/HyDE/Configs/.local/lib/hyde" "$HOME/.local/lib/hyde"
+
+# Instala o comando usado pelos seletores do HyDE.
+mkdir -p "$HOME/.local/bin"
+install -m 0755 "$TMP_DIR/HyDE/Configs/.local/bin/hyde-shell" "$HOME/.local/bin/hyde-shell"
 
 # Aparencia do terminal e dos aplicativos Qt/Dolphin.
 copy_if_present "$TMP_DIR/HyDE/Configs/.config/kitty" "$HOME/.config/kitty"
@@ -139,6 +144,7 @@ sudo systemctl mask \
 
 printf '\nCamada visual instalada. Backup salvo em:\n%s\n' "$BACKUP_DIR"
 printf 'Dolphin definido no SUPER+E e como gerenciador de arquivos padrao.\n'
+printf 'O comando hyde-shell foi instalado em ~/.local/bin.\n'
 printf 'SwayNC e todas as referencias de notificacao foram removidos.\n'
 printf 'O lf, menu de energia/logout e hibernacao foram removidos.\n'
 printf 'Reinicie a sessao do Hyprland para concluir.\n'
