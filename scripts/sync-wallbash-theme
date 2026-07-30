@@ -9,9 +9,6 @@ if [[ ! -s "$COLORS" ]]; then
   exit 1
 fi
 
-# shellcheck disable=SC1090
-source "$COLORS"
-
 required=(
   wallbash_pry1 wallbash_pry2 wallbash_pry3 wallbash_pry4
   wallbash_txt1 wallbash_txt4
@@ -20,6 +17,53 @@ required=(
   wallbash_3xa6 wallbash_3xa7 wallbash_3xa8 wallbash_3xa9
   wallbash_4xa5 wallbash_4xa6 wallbash_4xa7 wallbash_4xa8 wallbash_4xa9
 )
+
+declare -A allowed=()
+for name in "${required[@]}"; do
+  allowed["$name"]=1
+done
+
+trim() {
+  local value="$1"
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  printf '%s' "$value"
+}
+
+# O arquivo de cores é tratado apenas como dados. Ele nunca é executado com
+# `source`, evitando execução de comandos caso o cache seja adulterado.
+while IFS= read -r line || [[ -n "$line" ]]; do
+  line="$(trim "$line")"
+  [[ -z "$line" || "$line" == \#* ]] && continue
+
+  if [[ "$line" == export[[:space:]]* ]]; then
+    line="${line#export}"
+    line="$(trim "$line")"
+  fi
+
+  [[ "$line" == *=* ]] || continue
+
+  name="$(trim "${line%%=*}")"
+  value="$(trim "${line#*=}")"
+
+  [[ -n "${allowed[$name]:-}" ]] || continue
+
+  if [[ "$value" == \"*\" && "$value" == *\" ]]; then
+    value="${value:1:${#value}-2}"
+  elif [[ "$value" == \'*\' && "$value" == *\' ]]; then
+    value="${value:1:${#value}-2}"
+  fi
+
+  value="$(trim "$value")"
+
+  if [[ ! "$value" =~ ^\#?[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$ ]]; then
+    printf 'Valor de cor inválido em %s para %s\n' "$COLORS" "$name" >&2
+    exit 1
+  fi
+
+  [[ "$value" == \#* ]] || value="#$value"
+  printf -v "$name" '%s' "$value"
+done < "$COLORS"
 
 for name in "${required[@]}"; do
   if [[ -z "${!name:-}" ]]; then
@@ -30,7 +74,13 @@ done
 
 mkdir -p "$(dirname "$KITTY_THEME")"
 
-cat > "$KITTY_THEME" <<THEME
+tmp_theme="$(mktemp "${KITTY_THEME}.tmp.XXXXXX")"
+cleanup() {
+  rm -f -- "$tmp_theme"
+}
+trap cleanup EXIT
+
+cat > "$tmp_theme" <<THEME
 ## Wallbash dynamic theme
 ## Generated automatically from $COLORS
 
@@ -74,6 +124,10 @@ color14                 ${wallbash_4xa8}
 color7                  ${wallbash_1xa8}
 color15                 ${wallbash_txt1}
 THEME
+
+chmod 0600 "$tmp_theme"
+mv -f -- "$tmp_theme" "$KITTY_THEME"
+trap - EXIT
 
 pkill -SIGUSR1 kitty 2>/dev/null || true
 
