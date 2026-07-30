@@ -3,10 +3,11 @@ set -Eeuo pipefail
 
 HYDE_REPO="https://github.com/HyDE-Project/HyDE.git"
 HYDE_REF="fd70502f95142c242d0ce2d2e569f6fd1d7dd626"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 TMP_DIR="$(mktemp -d)"
 BACKUP_DIR="$HOME/.local/state/visual-hyde-backup/$(date +%Y%m%d-%H%M%S)"
 
-readonly HYDE_REPO HYDE_REF TMP_DIR BACKUP_DIR
+readonly HYDE_REPO HYDE_REF SCRIPT_DIR TMP_DIR BACKUP_DIR
 
 log() {
   printf '[visual-hyde] %s\n' "$*"
@@ -54,6 +55,17 @@ mask_user_service() {
   systemctl --user mask "$service" 2>/dev/null || true
 }
 
+install_local_command() {
+  local name="$1"
+  local source="$SCRIPT_DIR/$name"
+
+  [[ -f "$source" ]] || {
+    printf 'Comando empacotado não encontrado: %s\n' "$source" >&2
+    return 1
+  }
+  install -m 0755 "$source" "$HOME/.local/bin/$name"
+}
+
 mkdir -p "$BACKUP_DIR"
 
 log "Criando backup em $BACKUP_DIR"
@@ -67,6 +79,8 @@ for path in \
   "$HOME/.config/swaync" \
   "$HOME/.config/mako" \
   "$HOME/.local/bin/hyde-shell" \
+  "$HOME/.local/bin/sync-wallbash-theme" \
+  "$HOME/.local/bin/select-hyde-theme" \
   "$HOME/.local/share/hyde" \
   "$HOME/.local/share/wallbash" \
   "$HOME/.config/hypr/conf/autostart.conf" \
@@ -104,6 +118,8 @@ copy_tree "$TMP_DIR/HyDE/Configs/.config/Kvantum" "$HOME/.config/Kvantum"
 
 mkdir -p "$HOME/.local/bin"
 install -m 0755 "$TMP_DIR/HyDE/Configs/.local/bin/hyde-shell" "$HOME/.local/bin/hyde-shell"
+install_local_command sync-wallbash-theme
+install_local_command select-hyde-theme
 
 log "Removendo notificações, menus de energia e hibernação"
 for root in \
@@ -133,7 +149,6 @@ pkill -x hypridle 2>/dev/null || true
 mask_user_service hypridle.service
 remove_matching_lines "$HOME/.config/hypr" '(^|[[:space:]])hypridle([[:space:]]|$)'
 
-# Mantém o arquivo para referência, mas sem listeners ativos.
 if [[ -f "$HOME/.config/hypr/hypridle.conf" ]]; then
   cat > "$HOME/.config/hypr/hypridle.conf" <<'EOF'
 general {
@@ -182,8 +197,9 @@ cat <<EOF
 Camada visual instalada.
 Backup salvo em: $BACKUP_DIR
 Dolphin definido no SUPER+E.
-hyde-shell instalado em ~/.local/bin.
+hyde-shell, select-hyde-theme e sync-wallbash-theme instalados em ~/.local/bin.
 Notificações e ações automáticas por inatividade foram desativadas.
 Hibernação e menus de energia/logout foram removidos.
+Use select-hyde-theme para sincronizar Kitty, Antigravity IDE e Spotify.
 Reinicie a sessão do Hyprland para concluir.
 EOF
