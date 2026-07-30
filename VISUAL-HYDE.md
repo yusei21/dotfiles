@@ -1,31 +1,61 @@
 # Integração visual seletiva do HyDE
 
-Esta branch instala somente a camada visual solicitada:
+Esta branch adiciona somente os componentes visuais solicitados:
 
-- Rofi Launcher;
-- seleção e importação de temas;
-- seleção de wallpaper;
-- Wallbash;
-- aparência do Kitty;
-- integração Qt/Kvantum para o Dolphin;
-- suporte Wallbash para o Antigravity IDE.
+- Rofi Launcher e layouts do HyDE;
+- Theme Select;
+- Wallpaper Select;
+- Launcher Select;
+- Wallbash Modes;
+- aparência dinâmica do Kitty;
+- integração Wallbash com o Antigravity IDE;
+- integração Wallbash com o Spotify;
+- integração visual Qt/Kvantum para o Dolphin.
 
-A configuração principal do Hyprland não é substituída. Monitores, teclado, mouse, workspaces e preferências pessoais permanecem intactos.
+A integração não substitui a configuração principal do Hyprland. Permanecem intactos:
 
-## Recursos removidos
+- monitores;
+- teclado e mouse;
+- workspaces;
+- regras e preferências pessoais do Hyprland.
 
-O instalador remove ou desativa:
+## Tema sincronizado
 
-- `swaync`, `mako`, `dunst` e `fnott`;
-- central de notificações;
-- menu de energia/logout;
-- `lf`;
-- hibernação;
-- ações automáticas por inatividade.
+O instalador adiciona dois comandos:
 
-O `hypridle` é encerrado e mascarado, e referências de autostart são removidas. Assim, o computador não bloqueia, suspende, hiberna ou desliga automaticamente por falta de atividade.
+```bash
+select-hyde-theme
+sync-wallbash-theme
+```
 
-A suspensão manual continua disponível. A hibernação permanece mascarada por decisão desta branch.
+Use `select-hyde-theme` para escolher um tema e sincronizar a paleta gerada pelo Wallbash com:
+
+- Kitty;
+- Antigravity IDE;
+- Spotify.
+
+O comando `sync-wallbash-theme` reaplica a paleta atual sem abrir o seletor. O Spotify não precisa aplicar o tema ao ser aberto pelo atalho; a sincronização ocorre apenas quando um desses comandos é executado.
+
+## Notificações
+
+O instalador remove referências e bloqueia os serviços comuns de notificação:
+
+- `swaync`;
+- `mako`;
+- `dunst`;
+- `fnott`.
+
+## Inatividade e energia
+
+O `hypridle` é encerrado, desativado e mascarado. Assim, não há bloqueio, suspensão ou desligamento automático por inatividade.
+
+O instalador também mascara:
+
+- `hibernate.target`;
+- `hybrid-sleep.target`;
+- `suspend-then-hibernate.target`.
+
+A suspensão manual continua disponível.
 
 ## Instalação
 
@@ -36,7 +66,7 @@ chmod +x scripts/install-visual-hyde.sh
 ./scripts/install-visual-hyde.sh
 ```
 
-Antes das alterações, o script cria um backup em:
+Antes de copiar os componentes, o script cria um backup em:
 
 ```text
 ~/.local/state/visual-hyde-backup/
@@ -44,38 +74,8 @@ Antes das alterações, o script cria um backup em:
 
 ## Atalhos
 
-Os arquivos de atalhos não são substituídos integralmente. O instalador apenas garante:
+O instalador define o Dolphin no `SUPER+E`. Os demais atalhos pessoais continuam preservados.
 
-```ini
-bind = $mainMod, E, exec, dolphin
-```
+## Reinstalação após formatação
 
-Os atalhos dos seletores de tema, wallpaper e launcher podem ser associados manualmente.
-
-## Temas
-
-Para importar temas:
-
-```bash
-hyde-shell pyinit
-hyde-shell theme.import --select
-```
-
-Para trocar o tema instalado:
-
-```bash
-hyde-shell theme.select
-```
-
-Para aplicar Wallbash aos aplicativos:
-
-```bash
-hyde-shell wallbash kitty
-hyde-shell wallbash qtct
-hyde-shell wallbash code
-hyde-shell wallbash chrome
-```
-
-## Reinstalação
-
-Depois de formatar o sistema e clonar o repositório, execute novamente o instalador. Ele reinstala a camada visual, restaura os ajustes seletivos e mantém notificações, hibernação e ações automáticas por inatividade desativadas.
+Depois de instalar o Arch e clonar este repositório, execute novamente o instalador. Ele restaura a camada visual, instala os comandos de sincronização, desativa notificações, impede ações automáticas por inatividade e mantém a hibernação desativada.
