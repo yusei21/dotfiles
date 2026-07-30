@@ -1,6 +1,31 @@
+# Backups and temporary files
 *.bak
+*.tmp
+*.swp
+*~
+
+# Environment files
 .env
+.env.*
+!.env.example
+
+# Private keys and certificates
 *.key
 *.pem
+*.p12
+*.pfx
+*.crt
+*.cer
 .ssh/
+.gnupg/
+
+# Common credential files
+credentials.json
+service-account*.json
+*credentials*.json
+*secrets*.json
+
+# Local machine/account state
 .git-conta-antiga/
+.DS_Store
+Thumbs.db
