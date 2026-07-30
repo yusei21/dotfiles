@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+COLORS="${HYDE_CACHE_HOME:-$HOME/.cache/hyde}/wallbash/shell-colors"
+BEFORE=""
+
+[[ -f "$COLORS" ]] && BEFORE="$(stat -c %Y "$COLORS" 2>/dev/null || true)"
 hyde-shell theme.select
 
-COLORS="${HYDE_CACHE_HOME:-$HOME/.cache/hyde}/wallbash/shell-colors"
-for _ in {1..30}; do
-  [[ -s "$COLORS" ]] && break
+for _ in {1..50}; do
+  if [[ -s "$COLORS" ]]; then
+    AFTER="$(stat -c %Y "$COLORS" 2>/dev/null || true)"
+    [[ -z "$BEFORE" || "$AFTER" != "$BEFORE" ]] && break
+  fi
   sleep 0.2
 done
 
-sleep 1
 exec sync-wallbash-theme
