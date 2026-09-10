@@ -3,6 +3,9 @@
         "format": "{icon}",
         "on-click": "activate",
         "all-outputs": true,
+        "persistent-workspaces": {
+            "*": 5
+        },
         "format-icons": {
         "default": "󰫣 ",
         "active": "󰫢 "
@@ -27,19 +30,16 @@
 			"warning": 30,
 			"critical": 20
 		},
-		"format": "{icon}   {capacity}",
-		//"format-charging": "   {capacity}",
-        //"format-plugged": "    {capacity}",
-        "format-charging": "󰋠   {capacity}",
-		"format-plugged": "󰋠    {capacity}",
+		"format": "{icon} {capacity}%",
+        "format-charging": "󰋠 {capacity}%",
+		"format-plugged": "󰋠 {capacity}%",
 		"format-alt": "{time}   {icon}",
-        "format-icons": ["󱢠 󱢠 󱢠 ", "󱢠 󱢠 󰛞 ", "󱢠 󱢠 󰛞 ", "󱢠 󱢠 󰋑 ", "󱢠 󰛞 󰋑 ", "󱢠 󰛞 󰋑 ", "󱢠 󰋑 󰋑 ", "󰛞 󰋑 󰋑 ", "󰛞 󰋑 󰋑 ", "󰋑 󰋑 󰋑 "]
-		//"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-		//"format-icons": [" ", " ", " ", " ", " "]
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{capacity}% · {time}"
 	},
 
 	"network": {
-		"format-wifi": "    {signalStrength}%",
+		"format-wifi": " {signalStrength}%",
 		"format-ethernet": "{ipaddr}/{cidr}",
 		"format-linked": "{ifname} (No IP)",
 		"format-disconnected": "󰖪 ",
@@ -48,7 +48,7 @@
     },
 
 	"bluetooth": {
-		"format": "󰂯    {status}",
+		"format": "󰂯 {status}",
 		"format-disabled": " off",
 		"format-connected": " {num_connections}",
 		"tooltip-format": "{device_alias}",
@@ -77,4 +77,3 @@
         ]
     }
 }
-
