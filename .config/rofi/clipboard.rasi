@@ -9,7 +9,7 @@ configuration {
 * {
     font:                        "NDot57 Bold 11";
     background:                  transparent;
-    background-alt:              rgba(0,0,0,0.2);
+    background-alt:              rgba(0,0,0,0.44);
     foreground:                  white;
     selected:                    @selected-urgent-background;
     active:                      #909090;
@@ -28,9 +28,9 @@ mainbox {
     children:                    [ "inputbar", "textbox-help", "message", "listview" ];
     background-color:            transparent;
 
-    spacing:                     16px;
+    spacing:                     14px;
     margin:                      0px;
-    padding:                     64px;
+    padding:                     48px;
 }
 
 inputbar {
@@ -38,7 +38,7 @@ inputbar {
     border-radius:               5px;
 
     spacing:                     0px;
-    padding:                     150px 64px;
+    padding:                     96px 48px;
     orientation:                 horizontal;
     background-image:            url("~/wallpaper/wallpaper.png", width);
 }
@@ -65,7 +65,7 @@ entry {
     placeholder-color:           #FFFFFF80;
     border-radius:               5px;
     background-color:            @background-alt;
-    padding:                     10px 125px;
+    padding:                     10px 14px;
 }
 
 listview {
@@ -82,7 +82,7 @@ listview {
     scrollbar:                   true;
     layout:                      vertical;
     reverse:                     false;
-    fixed-height:                true;
+    fixed-height:                false;
     fixed-columns:               true;
     
     background-color:            transparent;

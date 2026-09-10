@@ -1,9 +1,9 @@
 @import "../../.cache/wal/colors-waybar.css";
 
 * {
-    font-size: 17px;
+    font-size: 16px;
     font-family: "Ndot55";
-	border-radius: 10px;
+	border-radius: 8px;
 }
 
 window {
@@ -12,20 +12,22 @@ window {
 
 button {
     color: @foreground;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.42);
     outline-style: none;
     border: none;
     box-shadow: none;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
+    margin: 6px;
+    transition: background-color 160ms ease, background-size 160ms ease;
 }
 
 button:hover,
 button:focus {
     color: @foreground;
-    background-color: @color1;
-    background-size: 60%;
+    background-color: alpha(@color13, 0.34);
+    background-size: 46%;
 }
 
 #logout {
@@ -42,11 +44,4 @@ button:focus {
 
 #reboot {
 	background-image: image(url("icons/reboot.png"));
-}
-
-#logout,
-#suspend,
-#shutdown,
-#reboot {
-    margin: 3px;
 }
