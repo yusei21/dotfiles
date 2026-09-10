@@ -1,22 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Path to your icons
 ICON_PATH="$HOME/.config/hypr/scripts/icons"
+BATTERY_PATH="${BATTERY_PATH:-/sys/class/power_supply/BAT0}"
 
-# Function to send notifications
-send_notification() {
-    local title="$1"
-    local message="$2"
-    notify-send "$title" "$message"
-}
+if [ ! -r "$BATTERY_PATH/capacity" ] || [ ! -r "$BATTERY_PATH/status" ]; then
+    notify-send -u low -i "$ICON_PATH/battery-unplugged.png" "Battery monitor disabled" "No readable battery found at $BATTERY_PATH."
+    exit 0
+fi
 
-# Function to check battery status
 check_battery_status() {
-    # Get battery capacity and status
-    local capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-    local status=$(cat /sys/class/power_supply/BAT0/status)
+    local capacity status
+    capacity=$(<"$BATTERY_PATH/capacity")
+    status=$(<"$BATTERY_PATH/status")
 
-    # Check for notifications
     if [ "$capacity" -le 20 ] && [ "$previous_status" != "low" ]; then
          notify-send -u critical -i "$ICON_PATH/battery-low.png" "Battery at 20%" "Please plug in your charger."
         previous_status="low"
@@ -25,7 +21,6 @@ check_battery_status() {
         previous_status="full"
     fi
 
-    # Check for plugging/unplugging events
     if [ "$status" == "Charging" ] && [ "$previous_power_status" != "plugged" ]; then
         notify-send -u normal -i "$ICON_PATH/battery-charging.png" "Charging" "Charger is plugged in."
         previous_power_status="plugged"
@@ -39,8 +34,7 @@ check_battery_status() {
 previous_status=""
 previous_power_status=""
 
-# Run the check in an infinite loop
 while true; do
     check_battery_status
-    sleep 60  # Check every minute
+    sleep 60
 done

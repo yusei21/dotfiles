@@ -1,13 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-wallpaper_path=~/wallpaper/wallpaper.png
+wallpaper_path="$HOME/wallpaper/wallpaper.png"
 
 if [ ! -f "$wallpaper_path" ]; then
 	notify-send -a "swww" "No wallpaper found" "$wallpaper_path"
 	exit 1
 fi
 
-awww img $wallpaper_path \
+if ! command -v awww >/dev/null 2>&1; then
+	notify-send -a "wallpaper" "awww is not installed"
+	exit 1
+fi
+
+awww img "$wallpaper_path" \
 	--transition-bezier .43,1.19,1,.4 \
 	--transition-fps 60 \
     --transition-step 90 \

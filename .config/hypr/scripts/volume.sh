@@ -68,7 +68,7 @@ toggle_mic() {
 	if [ "$(pamixer --default-source --get-mute)" == "false" ]; then
 		pamixer --default-source -m && notify-send -e -u low -i "$iDIR/microphone-mute.png" "Microphone Switched OFF"
 	elif [ "$(pamixer --default-source --get-mute)" == "true" ]; then
-		pamixer -u --default-source u && notify-send -e -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
+		pamixer --default-source -u && notify-send -e -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
 	fi
 }
 # Get Mic Icon
@@ -95,7 +95,7 @@ get_mic_volume() {
 notify_mic_user() {
     volume=$(get_mic_volume)
     icon=$(get_mic_icon)
-    notify-send -e -h int:value:"$volume" -h "string:x-canonical-private-synchronous:volume_notif" -u low -i "$icon" "Mic-Level: $volume"
+    notify-send -e -h int:value:"${volume%\%}" -h "string:x-canonical-private-synchronous:volume_notif" -u low -i "$icon" "Mic-Level: $volume"
 }
 
 # Increase MIC Volume
