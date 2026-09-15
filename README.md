@@ -31,6 +31,7 @@ instalado:
 - `bluetooth`/`bluetui` para o módulo de Bluetooth.
 - `spotify` e Spicetify para o tema do Spotify.
 - `antigravity-ide` para o atalho e integração visual do IDE.
+- `con` (Con Terminal) para o atalho `SUPER + Shift + T`.
 - Nerd Fonts usadas nos temas, especialmente `DepartureMono Nerd Font`.
 
 ## Instalação rápida
@@ -105,6 +106,8 @@ sync-wallbash-theme
 | Atalho | Ação |
 | --- | --- |
 | `SUPER + Space` | Abrir Rofi |
+| `SUPER + T` | Abrir Kitty |
+| `SUPER + Shift + T` | Abrir Con Terminal |
 | `SUPER + Return` | Abrir Kitty |
 | `SUPER + Shift + Return` | Abrir Kitty flutuante |
 | `SUPER + E` | Abrir Dolphin |
