@@ -3,9 +3,6 @@
         "format": "{icon}",
         "on-click": "activate",
         "all-outputs": true,
-        "persistent-workspaces": {
-            "*": 5
-        },
         "format-icons": {
         "default": "󰫣 ",
         "active": "󰫢 "
