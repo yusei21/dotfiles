@@ -1,22 +1,24 @@
-# Dotfiles Hyprland
+# Hyprland Dotfiles
 
-Configuração pessoal para CachyOS/Arch com Hyprland, Waybar, Rofi, SwayNC,
-Kitty, Neovim, Fastfetch, Fish/Zsh e integração visual com pywal/Wallbash.
+[🇧🇷 Português](README.pt-BR.md)
 
-## Principais recursos
+Personal CachyOS/Arch setup using Hyprland, Waybar, Rofi, SwayNC,
+Kitty, Neovim, Fastfetch, Fish/Zsh, and visual integration with pywal/Wallbash.
 
-- Hyprland com atalhos organizados por categoria.
-- Waybar compacta com workspaces, relógio, gravação, bateria, Bluetooth e rede.
-- Rofi para launcher, clipboard, Wi-Fi e seleção de wallpaper.
-- SwayNC estilizado para notificações e central de controle.
-- Kitty com tema dinâmico via pywal.
-- Scripts para wallpaper, tema, volume, brilho, screenshots, gravação e bateria.
-- Instalador opcional para integrar componentes visuais selecionados do HyDE.
+## Main features
 
-## Pré-requisitos
+- Hyprland with keybindings organized by category.
+- Compact Waybar with workspaces, clock, recording, battery, Bluetooth, and network.
+- Rofi for application launching, clipboard, Wi-Fi, and wallpaper selection.
+- Styled SwayNC for notifications and the control center.
+- Kitty with dynamic pywal theming.
+- Scripts for wallpapers, themes, volume, brightness, screenshots, recording, and battery.
+- Optional installer for selected visual components from HyDE.
 
-Este setup foi pensado para Arch/CachyOS com sessão Wayland. Antes de instalar,
-garanta que os pacotes principais estejam disponíveis:
+## Requirements
+
+This setup is designed for Arch Linux/CachyOS running a Wayland session. Before installing,
+make sure the main packages are available:
 
 ```bash
 sudo pacman -S --needed \
@@ -25,139 +27,138 @@ sudo pacman -S --needed \
   hyprshot awww dolphin fastfetch
 ```
 
-Alguns recursos são opcionais e só funcionam se o pacote correspondente estiver
-instalado:
+Some features are optional and only work when the corresponding package is installed:
 
-- `bluetooth`/`bluetui` para o módulo de Bluetooth.
-- `spotify` e Spicetify para o tema do Spotify.
-- `antigravity-ide` para o atalho e integração visual do IDE.
-- `con` (Con Terminal) para o atalho `SUPER + Shift + T`.
-- Nerd Fonts usadas nos temas, especialmente `DepartureMono Nerd Font`.
+- `bluetooth`/`bluetui` for the Bluetooth module.
+- `spotify` and Spicetify for Spotify theming.
+- `antigravity-ide` for the IDE shortcut and visual integration.
+- `con` (Con Terminal) for the `SUPER + Shift + T` shortcut.
+- Nerd Fonts used by the themes, especially `DepartureMono Nerd Font`.
 
-## Instalação rápida
+## Quick installation
 
-Clone o repositório:
+Clone the repository:
 
 ```bash
 git clone https://github.com/yusei21/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-Crie um backup das configurações atuais:
+Back up your current configuration:
 
 ```bash
 mkdir -p ~/.local/state/dotfiles-backup
 cp -a ~/.config ~/.zshrc ~/.local/state/dotfiles-backup/ 2>/dev/null || true
 ```
 
-Copie as configurações:
+Copy the configuration files:
 
 ```bash
 rsync -av --exclude='.git' .config/ ~/.config/
 cp -f .zshrc ~/.zshrc
 ```
 
-Crie a pasta de wallpapers e defina um wallpaper inicial:
+Create the wallpaper directory and set an initial wallpaper:
 
 ```bash
 mkdir -p ~/wallpaper
-cp /caminho/para/seu/wallpaper.png ~/wallpaper/wallpaper.png
+cp /path/to/your/wallpaper.png ~/wallpaper/wallpaper.png
 ```
 
-Recarregue o Hyprland ou reinicie a sessão:
+Reload Hyprland or restart your session:
 
 ```bash
 hyprctl reload
 ```
 
-## Instalação da camada visual HyDE
+## HyDE visual layer installation
 
-O repositório inclui um instalador opcional para importar somente partes visuais
-do HyDE, sem substituir a base pessoal do Hyprland.
+This repository includes an optional installer that imports only selected visual parts
+of HyDE without replacing the personal Hyprland base configuration.
 
-Leia o script antes de executar:
+Read the script before running it:
 
 ```bash
 sed -n '1,260p' scripts/install-visual-hyde.sh
 ```
 
-Execute:
+Run it:
 
 ```bash
 chmod +x scripts/install-visual-hyde.sh
 ./scripts/install-visual-hyde.sh
 ```
 
-O instalador cria backups em:
+The installer creates backups in:
 
 ```text
 ~/.local/state/visual-hyde-backup/
 ```
 
-Depois da instalação, use:
+After installation, use:
 
 ```bash
 select-hyde-theme
 sync-wallbash-theme
 ```
 
-## Atalhos úteis
+## Useful keybindings
 
-| Atalho | Ação |
+| Keybinding | Action |
 | --- | --- |
-| `SUPER + Space` | Abrir Rofi |
-| `SUPER + T` | Abrir Kitty |
-| `SUPER + Shift + T` | Abrir Con Terminal |
-| `SUPER + Return` | Abrir Kitty |
-| `SUPER + Shift + Return` | Abrir Kitty flutuante |
-| `SUPER + E` | Abrir Dolphin |
-| `SUPER + W` | Abrir navegador |
-| `SUPER + A` | Selecionar wallpaper |
-| `SUPER + B` | Trocar para wallpaper aleatório |
-| `SUPER + R` | Iniciar/parar gravação |
-| `SUPER + L` | Bloquear sessão |
-| `SUPER + Shift + R` | Recarregar Hyprland |
-| `SUPER + Shift + O` | Reiniciar Waybar |
-| `SUPER + Shift + V` | Abrir gerenciador de clipboard |
-| `Print` | Screenshot do monitor para clipboard |
-| `Ctrl + Print` | Screenshot de região para clipboard |
-| `SUPER + Shift + S` | Screenshot de região para clipboard |
+| `SUPER + Space` | Open Rofi |
+| `SUPER + T` | Open Kitty |
+| `SUPER + Shift + T` | Open Con Terminal |
+| `SUPER + Return` | Open Kitty |
+| `SUPER + Shift + Return` | Open floating Kitty |
+| `SUPER + E` | Open Dolphin |
+| `SUPER + W` | Open browser |
+| `SUPER + A` | Select wallpaper |
+| `SUPER + B` | Switch to a random wallpaper |
+| `SUPER + R` | Start/stop recording |
+| `SUPER + L` | Lock session |
+| `SUPER + Shift + R` | Reload Hyprland |
+| `SUPER + Shift + O` | Restart Waybar |
+| `SUPER + Shift + V` | Open clipboard manager |
+| `Print` | Screenshot current monitor to clipboard |
+| `Ctrl + Print` | Screenshot selected region to clipboard |
+| `SUPER + Shift + S` | Screenshot selected region to clipboard |
 
-## Wallpapers e temas
+## Wallpapers and themes
 
-Os scripts esperam wallpapers em:
+The scripts expect wallpapers in:
 
 ```text
 ~/wallpaper/
 ```
 
-O wallpaper ativo deve apontar para:
+The active wallpaper should point to:
 
 ```text
 ~/wallpaper/wallpaper.png
 ```
 
-Ao escolher um wallpaper pelo Rofi, o script atualiza o symlink, aplica o
-wallpaper com `awww`, regenera a paleta com `wal`, reinicia a Waybar e atualiza
-SwayNC/pywalfox quando disponíveis.
+When selecting a wallpaper through Rofi, the script updates the symlink, applies the
+wallpaper with `awww`, regenerates the palette with `wal`, restarts Waybar, and updates
+SwayNC/pywalfox when available.
 
-## Estrutura
+## Repository structure
 
-| Caminho | Conteúdo |
+| Path | Description |
 | --- | --- |
-| `.config/hypr` | Configuração do Hyprland e scripts da sessão |
-| `.config/waybar` | Barra superior e módulos |
-| `.config/rofi` | Launcher, clipboard, wallpaper picker e scripts auxiliares |
-| `.config/swaync` | Notificações e central de controle |
-| `.config/wlogout` | Menu de logout/energia |
+| `.config/hypr` | Hyprland configuration and session scripts |
+| `.config/waybar` | Top bar and modules |
+| `.config/rofi` | Launcher, clipboard, wallpaper picker, and helper scripts |
+| `.config/swaync` | Notifications and control center |
+| `.config/wlogout` | Logout and power menu |
 | `.config/kitty` | Terminal |
 | `.config/nvim` | Neovim |
-| `.config/fastfetch` | Tela de informações do sistema |
-| `scripts/` | Instalador e comandos auxiliares |
+| `.config/fastfetch` | System information screen |
+| `scripts/` | Installer and helper commands |
 
-## Manutenção
+## Maintenance
 
-Após editar scripts shell, valide a sintaxe:
+After editing shell scripts, validate their syntax:
 
 ```bash
 for f in .config/hypr/scripts/*.sh .config/waybar/script/*.sh scripts/*; do
@@ -165,13 +166,13 @@ for f in .config/hypr/scripts/*.sh .config/waybar/script/*.sh scripts/*; do
 done
 ```
 
-Antes de commitar, verifique espaços problemáticos:
+Before committing, check for whitespace problems:
 
 ```bash
 git diff --check
 ```
 
-## Segurança
+## Security
 
-Não execute scripts remotos diretamente com `curl | sh`. Clone o repositório,
-revise os scripts e mantenha backups das configurações antigas.
+Do not run remote scripts directly with `curl | sh`. Clone the repository,
+review the scripts, and keep backups of your previous configuration.
