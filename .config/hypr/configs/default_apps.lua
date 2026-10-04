@@ -1,0 +1,8 @@
+return {
+  browser = "brave",
+  terminal = "kitty",
+  menu = "rofi -show drun",
+  lockscreen = "hyprlock",
+  music = "spotify --ozone-platform=wayland",
+  ide = "antigravity-ide",
+}
