@@ -1,0 +1,2 @@
+-- No custom gestures are currently enabled.
+-- Hyprland 0.55+ uses hl.gesture({...}) instead of the old gestures block.
