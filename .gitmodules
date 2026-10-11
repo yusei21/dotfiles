@@ -1,0 +1,3 @@
+[submodule "HyDE"]
+	path = HyDE
+	url = https://github.com/HyDE-Project/HyDE.git

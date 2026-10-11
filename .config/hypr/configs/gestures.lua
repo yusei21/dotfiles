@@ -1,2 +1,0 @@
--- Intentionally minimal.
--- Add gestures here with hl.gesture({...}) when needed.
