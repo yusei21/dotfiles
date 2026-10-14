@@ -1,0 +1,14 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "spacing": 8,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": [],
+  "modules-right": ["pulseaudio", "network", "clock", "tray"],
+  "hyprland/workspaces": { "disable-scroll": true, "all-outputs": false },
+  "clock": { "format": "{:%H:%M}" },
+  "pulseaudio": { "format": "VOL {volume}%", "format-muted": "MUTE" },
+  "network": { "format-wifi": "NET", "format-ethernet": "LAN", "format-disconnected": "OFF" },
+  "tray": { "spacing": 6 }
+}

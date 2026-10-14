@@ -1,178 +1,27 @@
-# Hyprland Dotfiles
+# MINIMAL / CachyOS · Hyprland · NVIDIA
 
-[🇧🇷 Português](README.pt-BR.md)
+Dotfiles **novos do zero** para CachyOS, Wayland e NVIDIA. Desktop preto/cinza, sem blur, animações ou componentes dispensáveis.
 
-Personal CachyOS/Arch setup using Hyprland, Waybar, Rofi, SwayNC,
-Kitty, Neovim, Fastfetch, Fish/Zsh, and visual integration with pywal/Wallbash.
+**Stack:** Hyprland, Ghostty, Fish, Starship, Neovim (LazyVim opcional), Firefox, Fuzzel, Waybar, Mako, Yazi, Zellij, Docker, DBeaver, Ollama, Claude Code, Codex, OpenCode.
 
-## Main features
+## Instalar após formatar
 
-- Hyprland with keybindings organized by category.
-- Compact Waybar with workspaces, clock, recording, battery, Bluetooth, and network.
-- Rofi for application launching, clipboard, Wi-Fi, and wallpaper selection.
-- Styled SwayNC for notifications and the control center.
-- Kitty with dynamic pywal theming.
-- Scripts for wallpapers, themes, volume, brightness, screenshots, recording, and battery.
-- Optional installer for selected visual components from HyDE.
+1. Instale CachyOS com driver NVIDIA adequado à sua GPU. Confirme `nvidia-smi` antes de tentar iniciar o Hyprland.
+2. Instale Git: `sudo pacman -Syu --needed git`.
+3. `git clone https://github.com/yusei21/dotfiles.git && cd dotfiles`.
+4. **Leia** `scripts/install.sh` e rode `bash scripts/install.sh`. Ele pede confirmação, instala somente pacotes disponíveis, cria backups, e **não** altera drivers, shell padrão ou habilita serviços.
+5. Rode `bash scripts/doctor.sh`; reinicie e selecione Hyprland no gerenciador de login.
 
-## Requirements
+O teclado inicia em **ABNT2** (edite `dotfiles/hypr/hyprland.conf` se necessário). Monitor automático. Super+Enter terminal, Super+D aplicativos, Super+B navegador, Super+E arquivos, Super+H/J/K/L foco, Super+Shift+Q fechar, Super+Ctrl+L bloquear, Super+1..5 workspaces.
 
-This setup is designed for Arch Linux/CachyOS running a Wayland session. Before installing,
-make sure the main packages are available:
+### Instalações opcionais, deliberadamente manuais
 
-```bash
-sudo pacman -S --needed \
-  git rsync hyprland waybar rofi kitty swaync hyprlock hypridle \
-  pywal imagemagick jq brightnessctl pamixer playerctl wl-clipboard cliphist \
-  hyprshot awww dolphin fastfetch
-```
+- LazyVim: https://www.lazyvim.org/installation (exige conferir dependências e fazer backup do seu Neovim antes)
+- Claude Code: https://code.claude.com/docs/en/setup
+- Codex: https://developers.openai.com/codex/cli/
+- OpenCode: https://opencode.ai/docs/
+- Docker: após conferir os riscos do grupo docker, `sudo systemctl enable --now docker`; considere rootless Docker.
+- Ollama: `sudo systemctl enable --now ollama` apenas quando desejar serviço permanente; consulte https://docs.ollama.com/linux e valide suporte GPU.
+- Não coloque chaves/tokens nem arquivos `.env` no Git.
 
-Some features are optional and only work when the corresponding package is installed:
-
-- `bluetooth`/`bluetui` for the Bluetooth module.
-- `spotify` and Spicetify for Spotify theming.
-- `antigravity-ide` for the IDE shortcut and visual integration.
-- `con` (Con Terminal) for the `SUPER + Shift + T` shortcut.
-- Nerd Fonts used by the themes, especially `DepartureMono Nerd Font`.
-
-## Quick installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/yusei21/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-```
-
-Back up your current configuration:
-
-```bash
-mkdir -p ~/.local/state/dotfiles-backup
-cp -a ~/.config ~/.zshrc ~/.local/state/dotfiles-backup/ 2>/dev/null || true
-```
-
-Copy the configuration files:
-
-```bash
-rsync -av --exclude='.git' .config/ ~/.config/
-cp -f .zshrc ~/.zshrc
-```
-
-Create the wallpaper directory and set an initial wallpaper:
-
-```bash
-mkdir -p ~/wallpaper
-cp /path/to/your/wallpaper.png ~/wallpaper/wallpaper.png
-```
-
-Reload Hyprland or restart your session:
-
-```bash
-hyprctl reload
-```
-
-## HyDE visual layer installation
-
-This repository includes an optional installer that imports only selected visual parts
-of HyDE without replacing the personal Hyprland base configuration.
-
-Read the script before running it:
-
-```bash
-sed -n '1,260p' scripts/install-visual-hyde.sh
-```
-
-Run it:
-
-```bash
-chmod +x scripts/install-visual-hyde.sh
-./scripts/install-visual-hyde.sh
-```
-
-The installer creates backups in:
-
-```text
-~/.local/state/visual-hyde-backup/
-```
-
-After installation, use:
-
-```bash
-select-hyde-theme
-sync-wallbash-theme
-```
-
-## Useful keybindings
-
-| Keybinding | Action |
-| --- | --- |
-| `SUPER + Space` | Open Rofi |
-| `SUPER + T` | Open Kitty |
-| `SUPER + Shift + T` | Open Con Terminal |
-| `SUPER + Return` | Open Kitty |
-| `SUPER + Shift + Return` | Open floating Kitty |
-| `SUPER + E` | Open Dolphin |
-| `SUPER + W` | Open browser |
-| `SUPER + A` | Select wallpaper |
-| `SUPER + B` | Switch to a random wallpaper |
-| `SUPER + R` | Start/stop recording |
-| `SUPER + L` | Lock session |
-| `SUPER + Shift + R` | Reload Hyprland |
-| `SUPER + Shift + O` | Restart Waybar |
-| `SUPER + Shift + V` | Open clipboard manager |
-| `Print` | Screenshot current monitor to clipboard |
-| `Ctrl + Print` | Screenshot selected region to clipboard |
-| `SUPER + Shift + S` | Screenshot selected region to clipboard |
-
-## Wallpapers and themes
-
-The scripts expect wallpapers in:
-
-```text
-~/wallpaper/
-```
-
-The active wallpaper should point to:
-
-```text
-~/wallpaper/wallpaper.png
-```
-
-When selecting a wallpaper through Rofi, the script updates the symlink, applies the
-wallpaper with `awww`, regenerates the palette with `wal`, restarts Waybar, and updates
-SwayNC/pywalfox when available.
-
-## Repository structure
-
-| Path | Description |
-| --- | --- |
-| `.config/hypr` | Hyprland configuration and session scripts |
-| `.config/waybar` | Top bar and modules |
-| `.config/rofi` | Launcher, clipboard, wallpaper picker, and helper scripts |
-| `.config/swaync` | Notifications and control center |
-| `.config/wlogout` | Logout and power menu |
-| `.config/kitty` | Terminal |
-| `.config/nvim` | Neovim |
-| `.config/fastfetch` | System information screen |
-| `scripts/` | Installer and helper commands |
-
-## Maintenance
-
-After editing shell scripts, validate their syntax:
-
-```bash
-for f in .config/hypr/scripts/*.sh .config/waybar/script/*.sh scripts/*; do
-  [ -f "$f" ] && bash -n "$f"
-done
-```
-
-Before committing, check for whitespace problems:
-
-```bash
-git diff --check
-```
-
-## Security
-
-Do not run remote scripts directly with `curl | sh`. Clone the repository,
-review the scripts, and keep backups of your previous configuration.
+**Rollback local:** `bash scripts/rollback.sh`. Restaura arquivos de configuração salvos, sem remover pacotes. Este setup é um ponto de partida, não foi testado no seu hardware específico. O histórico Git anterior continua recuperável após substituição.

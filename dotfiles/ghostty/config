@@ -1,0 +1,10 @@
+theme = dark:Adwaita Dark,light:Adwaita
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+background = #111317
+foreground = #d6d9df
+background-opacity = 1
+window-padding-x = 12
+window-padding-y = 10
+cursor-style = block
+shell-integration = fish

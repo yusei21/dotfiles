@@ -1,0 +1,12 @@
+add_newline = false
+format = '$directory$git_branch$git_status$character'
+[directory]
+style = 'bold white'
+truncation_length = 3
+[git_branch]
+style = 'dimmed white'
+[git_status]
+style = 'dimmed white'
+[character]
+success_symbol = '[❯](white)'
+error_symbol = '[❯](red)'

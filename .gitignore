@@ -1,31 +1,9 @@
-# Backups and temporary files
-*.bak
-*.tmp
-*.swp
-*~
-
-# Environment files
+*.log
 .env
 .env.*
 !.env.example
-
-# Private keys and certificates
-*.key
-*.pem
-*.p12
-*.pfx
-*.crt
-*.cer
-.ssh/
-.gnupg/
-
-# Common credential files
-credentials.json
-service-account*.json
-*credentials*.json
-*secrets*.json
-
-# Local machine/account state
-.git-conta-antiga/
+*.swp
+*.swo
 .DS_Store
-Thumbs.db
+.cache/
+node_modules/
