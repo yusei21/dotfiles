@@ -9,7 +9,7 @@ echo "Serão instalados pacotes e substituídas configurações selecionadas em 
 echo "NÃO modifica drivers, shell padrão, bootloader, Docker ou serviços Ollama."
 read -rp "Continuar? [s/N] " answer
 [[ "$answer" == [sS] ]] || exit 0
-packages=(hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland ghostty fish starship neovim git curl fzf ripgrep fd jq firefox fuzzel waybar mako hyprlock hypridle grim slurp wl-clipboard pipewire wireplumber pipewire-pulse networkmanager polkit-kde-agent yazi lazygit lazydocker btop zellij docker docker-compose ollama dbeaver ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji)
+packages=(hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland ghostty fish starship neovim git curl fzf ripgrep fd jq brave-origin-bin firefox fuzzel waybar mako hyprlock hypridle grim slurp wl-clipboard pipewire wireplumber pipewire-pulse networkmanager polkit-kde-agent yazi lazygit lazydocker btop zellij docker docker-compose ollama dbeaver ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji)
 available=()
 for p in "${packages[@]}"; do
   if pacman -Si "$p" >/dev/null 2>&1; then available+=("$p"); else echo "Não encontrado no repositório: $p"; fi
