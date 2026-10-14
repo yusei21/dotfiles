@@ -2,7 +2,7 @@
 
 Dotfiles **novos do zero** para CachyOS, Wayland e NVIDIA. Desktop preto/cinza, sem blur, animações ou componentes dispensáveis.
 
-**Stack:** Hyprland, Ghostty, Fish, Starship, Neovim (LazyVim opcional), Firefox, Fuzzel, Waybar, Mako, Yazi, Zellij, Docker, DBeaver, Ollama, Claude Code, Codex, OpenCode.
+**Stack:** Hyprland, Ghostty, Fish, Starship, Neovim (LazyVim opcional), Brave Origin, Firefox, Fuzzel, Waybar, Mako, Yazi, Zellij, Docker, DBeaver, Ollama, Claude Code, Codex, OpenCode.
 
 ## Instalar após formatar
 
@@ -12,7 +12,7 @@ Dotfiles **novos do zero** para CachyOS, Wayland e NVIDIA. Desktop preto/cinza, 
 4. **Leia** `scripts/install.sh` e rode `bash scripts/install.sh`. Ele pede confirmação, instala somente pacotes disponíveis, cria backups, e **não** altera drivers, shell padrão ou habilita serviços.
 5. Rode `bash scripts/doctor.sh`; reinicie e selecione Hyprland no gerenciador de login.
 
-O teclado inicia em **ABNT2** (edite `dotfiles/hypr/hyprland.conf` se necessário). Monitor automático. Super+Enter terminal, Super+D aplicativos, Super+B navegador, Super+E arquivos, Super+H/J/K/L foco, Super+Shift+Q fechar, Super+Ctrl+L bloquear, Super+1..5 workspaces.
+O teclado inicia em **ABNT2** (edite `dotfiles/hypr/hyprland.conf` se necessário). Monitores: modo highrr automático (maior refresh anunciado, que pode reduzir resolução). Ajuste os modos manualmente depois de `hyprctl monitors all`. Workspaces dinâmicos, sem associação fixa a monitores. Super+T terminal, Super+Q fecha janela, Super+W Brave Origin, Super+Shift+W Firefox, Super+F tela cheia, Super+Shift+S screenshot de região para clipboard, Super+setas muda foco, Super+Shift+setas move janela, Super+D launcher, Super+E Yazi, Super+1..9 workspaces, Super+Shift+1..9 move janela, Super+Ctrl+L bloquear.
 
 ### Instalações opcionais, deliberadamente manuais
 
