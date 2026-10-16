@@ -15,7 +15,7 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações.
 ### Teclado, Hz e workspaces
 
 - Teclado **US International**: `kb_layout = us`, `kb_variant = intl`.
-- Monitores `monitor = , highrr, auto, 1`: escolhe a maior frequência anunciada para cada monitor **mesmo que isso diminua a resolução**. Para fixar Hz na resolução nativa, envie `hyprctl monitors all` depois de iniciar sessão; configure um modo exato por monitor, por exemplo `1920x1080@144` somente se estiver em `availableModes`.
+- Monitores fixados com modos confirmados: **LG UltraGear HDMI-A-1** em `1920x1080@119.98` na posição `0x0`, e **AOC 25G3ZM DP-3** em `1920x1080@239.96` na posição `1920x0`, ambos com escala `1`. LG à esquerda, AOC à direita. Se conectores mudarem após formatar, rode `hyprctl monitors all` e ajuste os nomes; há fallback automático para outras saídas.
 - Workspaces dinâmicos sem regra `workspace = ... monitor:...`; use Super+1–9. Podem migrar de tela com o trabalho.
 
 ### Atalhos
