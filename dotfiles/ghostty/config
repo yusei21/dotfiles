@@ -6,3 +6,5 @@ background-opacity = 1
 window-padding-x = 12
 window-padding-y = 10
 cursor-style = block
+keybind = ctrl+shift+a=select_all
+keybind = ctrl+shift+c=copy_to_clipboard

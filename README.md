@@ -1,6 +1,6 @@
 # MINIMAL / CachyOS · Hyprland · NVIDIA
 
-Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações.
+Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações. **Hyprland 0.55+ usa `dotfiles/hypr/hyprland.lua`**, sem configuração legado em hyprlang.
 
 **Stack:** Hyprland, Ghostty, Fish, Starship, Neovim, Brave Origin, LibreWolf, Fuzzel, Waybar, Mako, Yazi, Zellij, Docker, DBeaver, Ollama, Claude Code, Codex e OpenCode.
 
@@ -14,9 +14,9 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações.
 
 ### Teclado, Hz e workspaces
 
-- Teclado **US International**: `kb_layout = us`, `kb_variant = intl`.
+- Teclado **US International** configurado por Lua com `kb_layout = "us"` e `kb_variant = "intl"`.
 - Monitores fixados com modos confirmados: **LG UltraGear HDMI-A-1** em `1920x1080@119.98` na posição `0x0`, e **AOC 25G3ZM DP-3** em `1920x1080@239.96` na posição `1920x0`, ambos com escala `1`. LG à esquerda, AOC à direita. Se conectores mudarem após formatar, rode `hyprctl monitors all` e ajuste os nomes; há fallback automático para outras saídas.
-- Workspaces dinâmicos sem regra `workspace = ... monitor:...`; use Super+1–9. Podem migrar de tela com o trabalho.
+- Workspaces dinâmicos sem associação fixa a monitor; use Super+1–9. Podem migrar de tela com o trabalho.
 
 ### Atalhos
 
@@ -35,6 +35,12 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações.
 | Super+D | Fuzzel |
 | Super+E | Yazi (gerenciador de arquivos no terminal) |
 | Super+Ctrl+L | Bloquear |
+
+### Seleção e cópia no Ghostty
+
+- **Ctrl+Shift+A** seleciona todo o texto disponível na superfície do terminal; **Ctrl+Shift+C** copia a seleção. O histórico além do limite de scrollback não pode ser recuperado dessa forma.
+- Para copiar um arquivo inteiro, use `wl-copy < arquivo.conf`. Em Neovim, `ggVG\"+y` copia o buffer com clipboard integrado disponível.
+- **Lua é para o Hyprland 0.55+ e Neovim**. Ghostty, Fish, Waybar e outros aplicativos continuam usando seus próprios formatos.
 
 ### Ferramentas de IA opcionais
 
