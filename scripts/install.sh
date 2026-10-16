@@ -2,14 +2,14 @@
 set -Eeuo pipefail
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 [[ $EUID -ne 0 ]] || { echo "Execute sem sudo (o script pedirá sudo somente para pacman)."; exit 1; }
-command -v pacman >/dev/null || { echo "Este script requer CachyOS/Arch com pacman."; exit 1; }
+command -v pacman >/dev/null || { echo "Requer CachyOS/Arch com pacman."; exit 1; }
 source /etc/os-release
 [[ "${ID:-}" == cachyos || "${ID:-}" == arch || " ${ID_LIKE:-} " == *" arch "* ]] || { echo "Distribuição não identificada como Arch/CachyOS."; exit 1; }
-echo "Serão instalados pacotes e substituídas configurações selecionadas em ~/.config, com backup."
-echo "NÃO modifica drivers, shell padrão, bootloader, Docker ou serviços Ollama."
+echo "Instala pacotes e substitui configs selecionadas em ~/.config (com backup)."
+echo "Não modifica drivers, shell padrão, bootloader nem serviços."
 read -rp "Continuar? [s/N] " answer
 [[ "$answer" == [sS] ]] || exit 0
-packages=(hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland ghostty fish starship neovim git curl fzf ripgrep fd jq brave-origin-bin firefox fuzzel waybar mako hyprlock hypridle grim slurp wl-clipboard pipewire wireplumber pipewire-pulse networkmanager polkit-kde-agent yazi lazygit lazydocker btop zellij docker docker-compose ollama dbeaver ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji)
+packages=(hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland ghostty fish starship neovim git curl fzf ripgrep fd jq brave-origin-bin librewolf fuzzel waybar mako hyprlock hypridle grim slurp wl-clipboard pipewire wireplumber pipewire-pulse networkmanager polkit-kde-agent yazi lazygit lazydocker btop zellij docker docker-compose ollama dbeaver ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji)
 available=()
 for p in "${packages[@]}"; do
   if pacman -Si "$p" >/dev/null 2>&1; then available+=("$p"); else echo "Não encontrado no repositório: $p"; fi
