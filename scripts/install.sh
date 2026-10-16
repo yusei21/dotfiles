@@ -9,7 +9,7 @@ echo "Instala pacotes e substitui configs selecionadas em ~/.config (com backup)
 echo "Não modifica drivers, shell padrão, bootloader nem serviços."
 read -rp "Continuar? [s/N] " answer
 [[ "$answer" == [sS] ]] || exit 0
-packages=(hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland ghostty fish starship neovim git curl fzf ripgrep fd jq brave-origin-bin librewolf fuzzel waybar mako hyprlock hypridle grim slurp wl-clipboard pipewire wireplumber pipewire-pulse networkmanager polkit-kde-agent yazi lazygit lazydocker btop zellij docker docker-compose ollama dbeaver ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji)
+packages=(hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xorg-xwayland ghostty fish starship neovim git curl fzf ripgrep fd jq brave-origin-bin librewolf dolphin cliphist fuzzel waybar mako hyprlock hypridle grim slurp wl-clipboard pipewire wireplumber pipewire-pulse networkmanager polkit-kde-agent yazi lazygit lazydocker btop zellij docker docker-compose ollama dbeaver ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji)
 available=()
 for p in "${packages[@]}"; do
   if pacman -Si "$p" >/dev/null 2>&1; then available+=("$p"); else echo "Não encontrado no repositório: $p"; fi
