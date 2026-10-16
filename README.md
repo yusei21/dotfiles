@@ -1,27 +1,48 @@
 # MINIMAL / CachyOS · Hyprland · NVIDIA
 
-Dotfiles **novos do zero** para CachyOS, Wayland e NVIDIA. Desktop preto/cinza, sem blur, animações ou componentes dispensáveis.
+Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações.
 
-**Stack:** Hyprland, Ghostty, Fish, Starship, Neovim (LazyVim opcional), Brave Origin, Firefox, Fuzzel, Waybar, Mako, Yazi, Zellij, Docker, DBeaver, Ollama, Claude Code, Codex, OpenCode.
+**Stack:** Hyprland, Ghostty, Fish, Starship, Neovim, Brave Origin, LibreWolf, Fuzzel, Waybar, Mako, Yazi, Zellij, Docker, DBeaver, Ollama, Claude Code, Codex e OpenCode.
 
-## Instalar após formatar
+## Instalação depois de formatar
 
-1. Instale CachyOS com driver NVIDIA adequado à sua GPU. Confirme `nvidia-smi` antes de tentar iniciar o Hyprland.
-2. Instale Git: `sudo pacman -Syu --needed git`.
-3. `git clone https://github.com/yusei21/dotfiles.git && cd dotfiles`.
-4. **Leia** `scripts/install.sh` e rode `bash scripts/install.sh`. Ele pede confirmação, instala somente pacotes disponíveis, cria backups, e **não** altera drivers, shell padrão ou habilita serviços.
-5. Rode `bash scripts/doctor.sh`; reinicie e selecione Hyprland no gerenciador de login.
+1. Instale CachyOS com driver NVIDIA apropriado e confirme `nvidia-smi`.
+2. `sudo pacman -Syu --needed git`
+3. `git clone https://github.com/yusei21/dotfiles.git && cd dotfiles`
+4. Revise `scripts/install.sh` e execute `bash scripts/install.sh`
+5. `bash scripts/doctor.sh` e reinicie na sessão Hyprland.
 
-O teclado inicia em **ABNT2** (edite `dotfiles/hypr/hyprland.conf` se necessário). Monitores: modo highrr automático (maior refresh anunciado, que pode reduzir resolução). Ajuste os modos manualmente depois de `hyprctl monitors all`. Workspaces dinâmicos, sem associação fixa a monitores. Super+T terminal, Super+Q fecha janela, Super+W Brave Origin, Super+Shift+W Firefox, Super+F tela cheia, Super+Shift+S screenshot de região para clipboard, Super+setas muda foco, Super+Shift+setas move janela, Super+D launcher, Super+E Yazi, Super+1..9 workspaces, Super+Shift+1..9 move janela, Super+Ctrl+L bloquear.
+### Teclado, Hz e workspaces
 
-### Instalações opcionais, deliberadamente manuais
+- Teclado **US International**: `kb_layout = us`, `kb_variant = intl`.
+- Monitores `monitor = , highrr, auto, 1`: escolhe a maior frequência anunciada para cada monitor **mesmo que isso diminua a resolução**. Para fixar Hz na resolução nativa, envie `hyprctl monitors all` depois de iniciar sessão; configure um modo exato por monitor, por exemplo `1920x1080@144` somente se estiver em `availableModes`.
+- Workspaces dinâmicos sem regra `workspace = ... monitor:...`; use Super+1–9. Podem migrar de tela com o trabalho.
 
-- LazyVim: https://www.lazyvim.org/installation (exige conferir dependências e fazer backup do seu Neovim antes)
+### Atalhos
+
+| Atalho | Ação |
+| --- | --- |
+| Super+T | Ghostty |
+| Super+Q | Fechar janela |
+| Super+W | Brave Origin |
+| Super+Shift+W | LibreWolf |
+| Super+F | Tela cheia |
+| Super+Shift+S | Screenshot temporária da região para clipboard |
+| Super+setas | Foco da janela |
+| Super+Shift+setas | Mover janela |
+| Super+1–9 | Workspaces dinâmicos |
+| Super+Shift+1–9 | Mover janela para workspace |
+| Super+D | Fuzzel |
+| Super+E | Yazi (gerenciador de arquivos no terminal) |
+| Super+Ctrl+L | Bloquear |
+
+### Ferramentas de IA opcionais
+
+- LazyVim: https://www.lazyvim.org/installation
 - Claude Code: https://code.claude.com/docs/en/setup
 - Codex: https://developers.openai.com/codex/cli/
 - OpenCode: https://opencode.ai/docs/
-- Docker: após conferir os riscos do grupo docker, `sudo systemctl enable --now docker`; considere rootless Docker.
-- Ollama: `sudo systemctl enable --now ollama` apenas quando desejar serviço permanente; consulte https://docs.ollama.com/linux e valide suporte GPU.
-- Não coloque chaves/tokens nem arquivos `.env` no Git.
+- Docker: depois de revisar permissões, `sudo systemctl enable --now docker`.
+- Ollama: `sudo systemctl enable --now ollama` apenas se desejar serviço permanente.
 
-**Rollback local:** `bash scripts/rollback.sh`. Restaura arquivos de configuração salvos, sem remover pacotes. Este setup é um ponto de partida, não foi testado no seu hardware específico. O histórico Git anterior continua recuperável após substituição.
+**Rollback:** `bash scripts/rollback.sh` restaura arquivos guardados, não desinstala pacotes. Nenhum script foi testado no hardware específico. Não armazene chaves nem tokens neste repositório.
