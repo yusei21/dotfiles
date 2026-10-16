@@ -38,7 +38,7 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações. **Hyprla
 
 ### Seleção e cópia no Ghostty
 
-- **Ctrl+Shift+A** seleciona todo o texto disponível na superfície do terminal; **Ctrl+Shift+C** copia a seleção. O histórico além do limite de scrollback não pode ser recuperado dessa forma.
+- **Ctrl+Shift+A** seleciona e copia o texto disponível no terminal automaticamente (ações encadeadas, exige Ghostty 1.3+). **Ctrl+Shift+C** copia uma seleção manual. O histórico além do limite de scrollback não pode ser recuperado dessa forma.
 - Para copiar um arquivo inteiro, use `wl-copy < arquivo.conf`. Em Neovim, `ggVG\"+y` copia o buffer com clipboard integrado disponível.
 - **Lua é para o Hyprland 0.55+ e Neovim**. Ghostty, Fish, Waybar e outros aplicativos continuam usando seus próprios formatos.
 
