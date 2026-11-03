@@ -27,7 +27,7 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações. **Hyprla
 | Super+W | Brave Origin |
 | Super+Shift+W | LibreWolf |
 | Super+F | Tela cheia |
-| Super+Shift+S | Screenshot temporária da região para clipboard |
+| Super+Shift+S | Selecionar região, editar com Satty e escolher copiar ou salvar |
 | Super+setas | Foco da janela |
 | Super+Shift+setas | Mover janela |
 | Super+1–9 | Workspaces dinâmicos |
@@ -35,6 +35,12 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações. **Hyprla
 | Super+D | Fuzzel |
 | Super+E | Yazi (gerenciador de arquivos no terminal) |
 | Super+Ctrl+L | Bloquear |
+
+### Capturas de tela
+
+- **Super+Shift+S** permite selecionar a região com `slurp` e editar com `satty` (desenhar, destacar, setas e texto).
+- No Satty, **Ctrl+C** copia sem salvar; **Ctrl+S** salva em `~/Pictures/Screenshots/` sem copiar; **Ctrl+Shift+S** abre o diálogo Salvar como. O diretório é criado ao acionar o atalho.
+- Instale as dependências após atualizar os dotfiles: `sudo pacman -Syu --needed satty grim slurp wl-clipboard`. O `git pull` sozinho não instala pacotes nem copia a configuração para `~/.config`.
 
 ### Seleção e cópia no Ghostty
 
