@@ -59,7 +59,8 @@ hl.bind("SUPER + Q", hl.dsp.window.close({}))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("SUPER + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy --type image/png'))
+-- Selecionar região, anotar e optar por copiar ou salvar.
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd('sh -c \'mkdir -p "$HOME/Pictures/Screenshots"; grim -g "$(slurp)" - | satty -f - --copy-command wl-copy -o "$HOME/Pictures/Screenshots/screenshot-%Y%m%d_%H%M%S.png"\''))
 
 for _, entry in ipairs({
   { key = "LEFT", direction = "l" },
