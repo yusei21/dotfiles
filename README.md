@@ -15,7 +15,7 @@ Dotfiles criados do zero: desktop preto/cinza, sem blur ou animações. **Hyprla
 ### Teclado, Hz e workspaces
 
 - Teclado **US International** configurado por Lua com `kb_layout = "us"` e `kb_variant = "intl"`.
-- Monitores: **Dell AW2525HM DP-3** à esquerda em `1920x1080@319.98` (posição `0x0`, horizontal) e **LG UltraGear HDMI-A-1** à direita em `1920x1080@119.98` (posição `1920x0`, `transform = 3` para rotação de 270°). Ambos com escala `1`. As frequências foram confirmadas por `hyprctl monitors all`; o Dell apresentou 319,98 Hz como modo máximo disponível nessa conexão. Se os conectores mudarem, rode `hyprctl monitors all` e ajuste os nomes; há fallback automático para outras saídas.
+- Monitores: **Dell AW2525HM DP-3** à esquerda em `1920x1080@319.98` (posição `0x420`, horizontal e centralizado verticalmente em relação ao LG) e **LG UltraGear HDMI-A-1** à direita em `1920x1080@119.98` (posição `1920x0`, `transform = 3` para rotação de 270°). Ambos com escala `1`. As frequências foram confirmadas por `hyprctl monitors all`; o Dell apresentou 319,98 Hz como modo máximo disponível nessa conexão. Se os conectores mudarem, rode `hyprctl monitors all` e ajuste os nomes; há fallback automático para outras saídas.
 - Workspaces dinâmicos sem associação fixa a monitor; use Super+1–9. Podem migrar de tela com o trabalho.
 
 ### Atalhos
