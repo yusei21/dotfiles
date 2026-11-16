@@ -1,9 +1,13 @@
 -- Hyprland 0.55+ · CachyOS · NVIDIA · clean monochrome
 -- Dell AW2525HM à esquerda (319,98 Hz); LG UltraGear à direita na vertical.
--- Workspaces dinâmicos, sem fixar monitor.
+-- Workspaces 1 e 2 nos monitores principais; 3-9 dinâmicos.
 hl.monitor({ output = "DP-3", mode = "1920x1080@319.98", position = "0x420", scale = 1 })
 hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@119.98", position = "1920x0", scale = 1, transform = 3 })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+
+-- Workspaces iniciais, persistentes e associados a cada monitor.
+hl.workspace_rule({ workspace = "1", monitor = "DP-3", default = true, persistent = true })
+hl.workspace_rule({ workspace = "2", monitor = "HDMI-A-1", default = true, persistent = true })
 
 hl.config({
   input = {
