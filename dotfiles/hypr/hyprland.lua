@@ -1,7 +1,8 @@
 -- Hyprland 0.55+ · CachyOS · NVIDIA · clean monochrome
--- Configuração em Lua; workspaces dinâmicos, sem fixar monitor.
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@119.98", position = "0x0", scale = 1 })
-hl.monitor({ output = "DP-3", mode = "1920x1080@239.96", position = "1920x0", scale = 1 })
+-- Dell AW2525HM à esquerda (319,98 Hz); LG UltraGear à direita na vertical.
+-- Workspaces dinâmicos, sem fixar monitor.
+hl.monitor({ output = "DP-3", mode = "1920x1080@319.98", position = "0x0", scale = 1 })
+hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@119.98", position = "1920x0", scale = 1, transform = 1 })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
 hl.config({
