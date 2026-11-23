@@ -52,6 +52,9 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
 
+-- Teclado 60%: Shift+Esc insere ~ diretamente, sem tecla morta do US International.
+hl.bind("SHIFT + ESCAPE", hl.dsp.exec_cmd("wtype '~'"))
+
 hl.bind("SUPER + T", hl.dsp.exec_cmd("ghostty"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("fuzzel"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("sh -c 'command -v brave-origin >/dev/null && exec brave-origin || exec brave-origin-browser'"))
