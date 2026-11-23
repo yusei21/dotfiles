@@ -53,7 +53,7 @@ hl.on("hyprland.start", function()
 end)
 
 -- Teclado 60%: Shift+Esc insere ~ diretamente, sem tecla morta do US International.
-hl.bind("SHIFT + ESCAPE", hl.dsp.exec_cmd("wtype '~'"))
+hl.bind("SHIFT + ESCAPE", hl.dsp.exec_cmd("wtype '~'"), { release = true })
 
 hl.bind("SUPER + T", hl.dsp.exec_cmd("ghostty"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("fuzzel"))
