@@ -9,3 +9,4 @@ cursor-style = block
 keybind = ctrl+shift+a=select_all
 keybind = chain=copy_to_clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
+keybind = shift+escape=text:~
