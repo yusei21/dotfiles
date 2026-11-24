@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 [[ "$EUID" -ne 0 ]] || { echo "Execute sem sudo."; exit 1; }
-for cmd in cp mkdir date; do command -v "$cmd" >/dev/null || exit 1; done
+for cmd in cp mkdir date python3; do command -v "$cmd" >/dev/null || exit 1; done
 if command -v lua >/dev/null 2>&1; then
   lua -e 'assert(loadfile(arg[1]))' "$ROOT/dotfiles/hypr/hyprland.lua" || exit 1
 fi
@@ -30,7 +30,16 @@ if [[ -f "$HOME/.config/hypr/minimal-glass.png" ]]; then
 else
   python3 "$ROOT/scripts/generate-wallpaper.py" "$HOME/.config/hypr/minimal-glass.png"
 fi
-printf '%s\n' "$backup" > "$HOME/.local/share/minimal-dotfiles/last-backup"
+printf '%s\n' "$backup" > "$HOME/.local/share/minimal-dotfiles/last-glass-backup"
+if [[ "${1:-}" == "--nvim" ]]; then
+  nvim_dest="$HOME/.config/nvim/lua/plugins/minimal-glass.lua"
+  mkdir -p "$(dirname "$nvim_dest")"
+  if [[ -e "$nvim_dest" ]]; then
+    mkdir -p "$backup/nvim"
+    cp -a "$nvim_dest" "$backup/nvim/minimal-glass.lua"
+  fi
+  cp -a "$ROOT/extras/nvim/lua/plugins/minimal-glass.lua" "$nvim_dest"
+fi
 echo "Aplicado. Backup: $backup"
 echo "Para rollback: bash scripts/rollback-glass.sh"
 echo "Reinicie a sessão Hyprland para carregar hyprpaper e todos os efeitos."
