@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
-pointer="$HOME/.local/share/minimal-dotfiles/last-backup"
+pointer="$HOME/.local/share/minimal-dotfiles/last-glass-backup"
 [[ -f "$pointer" ]] || { echo "Nenhum backup de aplicação encontrado."; exit 1; }
 backup="$(cat "$pointer")"
 [[ "$backup" == "$HOME/.local/share/minimal-dotfiles/backups/"* && -d "$backup" ]] || exit 1
@@ -18,5 +18,11 @@ for name in hypr waybar ghostty fuzzel mako; do
     cp -a -- "$file" "$HOME/.config/$name/$base"
   done
 done
+if [[ -f "$backup/nvim/minimal-glass.lua" ]]; then
+  dest="$HOME/.config/nvim/lua/plugins/minimal-glass.lua"
+  mkdir -p "$snapshot/nvim" "$(dirname "$dest")"
+  [[ ! -f "$dest" ]] || cp -a "$dest" "$snapshot/nvim/minimal-glass.lua"
+  cp -a "$backup/nvim/minimal-glass.lua" "$dest"
+fi
 echo "Restaurados arquivos com backup. Arquivos novos precisam de revisão manual."
 echo "Estado substituído guardado em: $snapshot"
