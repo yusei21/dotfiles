@@ -1,7 +1,10 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 28,
+  "height": 32,
+  "margin-top": 8,
+  "margin-left": 12,
+  "margin-right": 12,
   "spacing": 8,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": [],
