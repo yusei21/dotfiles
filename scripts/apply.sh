@@ -4,8 +4,12 @@ set -Eeuo pipefail
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 [[ "$EUID" -ne 0 ]] || { echo "Execute sem sudo."; exit 1; }
 for cmd in cp mkdir date python3; do command -v "$cmd" >/dev/null || exit 1; done
-if command -v lua >/dev/null 2>&1; then
-  lua -e 'assert(loadfile(arg[1]))' "$ROOT/dotfiles/hypr/hyprland.lua" || exit 1
+# Syntax-check the Lua file without executing Hyprland-specific globals.
+# Passing the filename as a Lua script would execute it; loadfile(nil) reads stdin and hangs.
+if command -v luac >/dev/null 2>&1; then
+  luac -p "$ROOT/dotfiles/hypr/hyprland.lua"
+elif command -v lua >/dev/null 2>&1; then
+  HYPR_LUA_FILE="$ROOT/dotfiles/hypr/hyprland.lua" lua -e 'assert(loadfile(assert(os.getenv("HYPR_LUA_FILE"))))'
 fi
 stamp="$(date +%Y%m%d-%H%M%S)"
 backup="$HOME/.local/share/minimal-dotfiles/backups/$stamp"
