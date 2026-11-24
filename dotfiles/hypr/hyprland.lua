@@ -1,4 +1,4 @@
--- Hyprland 0.55+ · CachyOS · NVIDIA · clean monochrome
+-- Hyprland 0.55+ · CachyOS · NVIDIA · MINIMAL GLASS
 -- Dell AW2525HM à esquerda (319,98 Hz); LG UltraGear à direita na vertical.
 -- Workspaces 1 e 2 nos monitores principais; 3-9 dinâmicos.
 hl.monitor({ output = "DP-3", mode = "1920x1080@319.98", position = "0x420", scale = 1 })
@@ -18,21 +18,21 @@ hl.config({
   },
   general = {
     layout = "dwindle",
-    gaps_in = 5,
-    gaps_out = 9,
+    gaps_in = 6,
+    gaps_out = 12,
     border_size = 1,
     col = {
-      active_border = "rgba(80858dff)",
-      inactive_border = "rgba(32363dff)",
+      active_border = "rgba(858b96ff)",
+      inactive_border = "rgba(32363daa)",
     },
     resize_on_border = true,
   },
   decoration = {
-    rounding = 7,
+    rounding = 10,
     active_opacity = 1.0,
     inactive_opacity = 1.0,
-    shadow = { enabled = false },
-    blur = { enabled = false },
+    shadow = { enabled = true, range = 10, render_power = 2, color = "rgba(00000055)" },
+    blur = { enabled = true, size = 5, passes = 2, xray = false },
   },
   animations = { enabled = false },
   dwindle = { preserve_split = true },
@@ -43,9 +43,16 @@ hl.config({
   },
 })
 
+-- Blur only on explicitly translucent layer-shell surfaces.
+-- Check actual namespaces with: hyprctl layers
+hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
+hl.layer_rule({ match = { namespace = "fuzzel" }, blur = true })
+hl.layer_rule({ match = { namespace = "notifications" }, blur = true })
+
 hl.on("hyprland.start", function()
   hl.exec_cmd("waybar")
   hl.exec_cmd("mako")
+  hl.exec_cmd("hyprpaper")
   hl.exec_cmd("hypridle")
   hl.exec_cmd("wl-paste --type text --watch cliphist store")
   hl.exec_cmd("wl-paste --type image --watch cliphist store")
