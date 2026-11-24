@@ -1,10 +1,10 @@
 font-family = JetBrainsMono Nerd Font
 font-size = 12
 background = #111317
-foreground = #d6d9df
-background-opacity = 1
-window-padding-x = 12
-window-padding-y = 10
+foreground = #e5e8ec
+background-opacity = 0.88
+window-padding-x = 14
+window-padding-y = 12
 cursor-style = block
 keybind = ctrl+shift+a=select_all
 keybind = chain=copy_to_clipboard
