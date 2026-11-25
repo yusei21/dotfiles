@@ -1,0 +1,39 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 12,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "wireplumber",
+    "network",
+    "clock"
+  ],
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "all-outputs": false
+  },
+  "cpu": {
+    "format": "CPU {usage}%",
+    "interval": 3
+  },
+  "memory": {
+    "format": "RAM {percentage}%",
+    "interval": 5
+  },
+  "wireplumber": {
+    "format": "VOL {volume}%"
+  },
+  "network": {
+    "format-ethernet": "LAN",
+    "format-wifi": "WIFI",
+    "format-disconnected": "OFF"
+  },
+  "clock": {
+    "format": "{:%H:%M}"
+  }
+}

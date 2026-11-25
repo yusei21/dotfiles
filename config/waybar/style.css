@@ -1,0 +1,6 @@
+@import "colors.css";
+* { font-family: "JetBrains Mono"; font-size: 12px; min-height: 0; }
+window#waybar { background: @bg; color: @fg; }
+#workspaces button { padding: 0 8px; color: @fg; border: none; }
+#workspaces button.active { background: @accent; color: @bg; }
+#clock { padding-right: 10px; }

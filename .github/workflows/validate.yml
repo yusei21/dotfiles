@@ -1,0 +1,11 @@
+name: Validate
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n install.sh doctor.sh scripts/dot-wall
+      - run: python3 -m json.tool config/waybar/config.jsonc >/dev/null

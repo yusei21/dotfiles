@@ -1,6 +1,0 @@
-* { font-family: "JetBrainsMono Nerd Font"; font-size: 11px; min-height: 0; }
-window#waybar { background: rgba(17,19,23,0.78); color: #e5e8ec; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; }
-#workspaces button { color: #858b96; padding: 0 8px; margin: 3px 2px; border-radius: 7px; }
-#workspaces button.active { color: #ffffff; background: rgba(255,255,255,0.12); }
-#cpu, #memory, #temperature, #clock, #network, #pulseaudio, #tray { padding: 0 8px; }
-#temperature.critical { color: #ff5555; }

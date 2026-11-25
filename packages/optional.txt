@@ -1,0 +1,15 @@
+# Verify availability and official installation channel before installing.
+cachyos-gaming-meta
+brave-origin
+librewolf
+discord
+spotify
+vscodium
+obsidian
+proton-vpn
+nvidia-container-toolkit
+Claude Code
+Codex
+OpenCode
+AGY CLI
+Kimi CLI

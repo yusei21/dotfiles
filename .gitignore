@@ -1,9 +1,5 @@
-*.log
+*.local
 .env
-.env.*
-!.env.example
-*.swp
-*.swo
-.DS_Store
-.cache/
-node_modules/
+*.pem
+*.key
+__pycache__/

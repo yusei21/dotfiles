@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+role=${1:?horizontal or vertical}
+action=${2:-next}
+case "$role" in horizontal) monitor=DP-3;; vertical) monitor=HDMI-A-1;; *) exit 2;; esac
+dir="$HOME/Pictures/Wallpapers/$role"
+state="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles"
+mkdir -p "$dir" "$state"
+exec 9>"$state/wall.lock"
+flock 9
+current=""
+[[ ! -f "$state/$role" ]] || current=$(cat "$state/$role")
+mapfile -d '' -t images < <(find "$dir" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0 | sort -z)
+if(( ${#images[@]} == 0 )); then exit 0; fi
+case "$action" in
+ restore) image="$current"; [[ -f "$image" ]] || image="${images[0]}";;
+ next) image="${images[0]}"; for i in "${!images[@]}"; do if [[ "${images[i]}" == "$current" ]]; then image="${images[(i+1)%${#images[@]}]}"; break; fi; done;;
+ select) image=$(printf '%s\n' "${images[@]}" | fuzzel --dmenu) || exit 0;;
+ *) exit 2;;
+esac
+[[ -f "$image" && "$image" == "$dir/"* && "$image" != *,* ]] || exit 2
+[[ $(hyprctl hyprpaper wallpaper "$monitor, $image, cover") == ok ]] || exit 1
+printf '%s\n' "$image" > "$state/$role"
+if [[ "$role" == horizontal ]]; then
+    if matugen image "$image" -m dark; then
+        pkill -USR2 -x waybar || true
+        pkill -USR1 -x kitty || true
+    else
+        notify-send "Theme generation failed" || true
+    fi
+fi
