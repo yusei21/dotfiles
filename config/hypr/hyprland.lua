@@ -2,3 +2,4 @@ local root = (os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME") .. "/.config") .
 for _, module in ipairs({"monitors", "appearance", "bindings", "autostart"}) do
     dofile(root .. "modules/" .. module .. ".lua")
 end
+dofile(root .. "colors.lua")

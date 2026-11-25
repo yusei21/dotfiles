@@ -1,0 +1,7 @@
+[general]
+framerate = 30
+bars = 32
+[input]
+method = pipewire
+[color]
+foreground = '#a7c7d8'

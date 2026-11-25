@@ -1,0 +1,16 @@
+[init]
+    defaultBranch = main
+[core]
+    editor = nvim
+[fetch]
+    prune = true
+[pull]
+    ff = only
+[push]
+    autoSetupRemote = true
+[merge]
+    conflictStyle = zdiff3
+[alias]
+    st = status -sb
+    lg = log --graph --oneline --decorate --all
+    df = diff

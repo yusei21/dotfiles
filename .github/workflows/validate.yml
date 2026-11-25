@@ -7,5 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash -n install.sh doctor.sh scripts/dot-wall
-      - run: python3 -m json.tool config/waybar/config.jsonc >/dev/null
+      - run: |
+          for file in install.sh doctor.sh scripts/dot-*; do bash -n "$file"; done
+          python3 -m json.tool config/waybar/config.jsonc >/dev/null
+          python3 -c 'import tomllib; tomllib.load(open("config/matugen/config.toml","rb"))'
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y lua5.4
+          find config -name '*.lua' -exec luac -p {} \;

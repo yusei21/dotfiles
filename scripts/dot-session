@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+choice=$(printf 'Lock\nLogout\nSuspend\nReboot\nPower off\n' | fuzzel --dmenu) || exit 0
+case "$choice" in
+Lock) loginctl lock-session;;
+Logout) loginctl terminate-session "${XDG_SESSION_ID:?}";;
+Suspend) systemctl suspend;;
+Reboot| 'Power off') confirm=$(printf 'No\nYes\n' | fuzzel --dmenu --prompt='Confirm: ') || exit 0; [[ "$confirm" == Yes ]] || exit 0; if [[ "$choice" == Reboot ]]; then systemctl reboot; else systemctl poweroff; fi;;
+esac
