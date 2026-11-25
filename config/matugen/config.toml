@@ -5,3 +5,21 @@ output_path = "~/.config/waybar/colors.css"
 [templates.kitty]
 input_path = "~/.config/matugen/templates/kitty.conf"
 output_path = "~/.config/kitty/colors.conf"
+[templates.hypr]
+input_path = "~/.config/matugen/templates/hypr.lua"
+output_path = "~/.config/hypr/colors.lua"
+[templates.nvim]
+input_path = "~/.config/matugen/templates/nvim.lua"
+output_path = "~/.config/nvim/colors-generated.lua"
+[templates.fuzzel]
+input_path = "~/.config/matugen/templates/fuzzel.ini"
+output_path = "~/.config/fuzzel/colors.ini"
+[templates.mako]
+input_path = "~/.config/matugen/templates/mako.conf"
+output_path = "~/.config/mako/config"
+[templates.cava]
+input_path = "~/.config/matugen/templates/cava.conf"
+output_path = "~/.config/cava/config"
+[templates.lock]
+input_path = "~/.config/matugen/templates/hyprlock.conf"
+output_path = "~/.config/hypr/hyprlock.conf"

@@ -34,3 +34,7 @@ docker-compose
 ollama-cuda
 xdg-desktop-portal-hyprland
 ttf-jetbrains-mono
+jq
+playerctl
+hyprpolkitagent
+nvim-lspconfig

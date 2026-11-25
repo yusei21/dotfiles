@@ -1,0 +1,1 @@
+return {bg="{{colors.surface.default.hex}}",fg="{{colors.on_surface.default.hex}}",surface="{{colors.surface_variant.default.hex}}",muted="{{colors.on_surface_variant.default.hex}}",accent="{{colors.primary.default.hex}}"}

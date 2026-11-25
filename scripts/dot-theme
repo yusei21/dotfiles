@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+image=${1:?wallpaper path required}
+cfg="$HOME/.config"
+paths=(waybar/colors.css kitty/colors.conf hypr/colors.lua nvim/colors-generated.lua fuzzel/colors.ini mako/config cava/config hypr/hyprlock.conf)
+backup=$(mktemp -d)
+trap 'rm -rf -- "$backup"' EXIT
+for path in "${paths[@]}"; do
+  if [[ -f "$cfg/$path" ]]; then mkdir -p "$backup/$(dirname "$path")"; cp -- "$cfg/$path" "$backup/$path"; fi
+done
+if ! matugen image "$image" -m dark; then
+  for path in "${paths[@]}"; do
+    if [[ -f "$backup/$path" ]]; then cp -- "$backup/$path" "$cfg/$path"; else rm -f -- "$cfg/$path"; fi
+  done
+  notify-send "Theme generation failed; previous palette restored" || true
+  exit 1
+fi
+pkill -USR2 -x waybar || true
+pkill -USR1 -x kitty || true
+makoctl reload || true
+hyprctl eval 'dofile(os.getenv("HOME") .. "/.config/hypr/colors.lua")' || true

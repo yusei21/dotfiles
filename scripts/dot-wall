@@ -22,10 +22,5 @@ esac
 [[ $(hyprctl hyprpaper wallpaper "$monitor, $image, cover") == ok ]] || exit 1
 printf '%s\n' "$image" > "$state/$role"
 if [[ "$role" == horizontal ]]; then
-    if matugen image "$image" -m dark; then
-        pkill -USR2 -x waybar || true
-        pkill -USR1 -x kitty || true
-    else
-        notify-send "Theme generation failed" || true
-    fi
+    "$HOME/.local/bin/dot-theme" "$image"
 fi

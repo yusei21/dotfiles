@@ -1,0 +1,1 @@
+hl.config({general={["col.active_border"]="rgba({{colors.primary.default.hex_stripped}}ff)",["col.inactive_border"]="rgba({{colors.surface_variant.default.hex_stripped}}ff)"}})
