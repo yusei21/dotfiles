@@ -2,7 +2,7 @@
 set -euo pipefail
 image=${1:?wallpaper path required}
 cfg="$HOME/.config"
-paths=(waybar/colors.css kitty/colors.conf hypr/colors.lua nvim/colors-generated.lua fuzzel/colors.ini mako/config cava/config hypr/hyprlock.conf qt6ct/colors/matugen.conf gtk-3.0/gtk.css gtk-4.0/gtk.css kdeglobals)
+paths=(waybar/colors.css hypr/colors.lua nvim/colors-generated.lua fuzzel/colors.ini mako/config cava/config hypr/hyprlock.conf qt6ct/colors/matugen.conf gtk-3.0/gtk.css gtk-4.0/gtk.css kdeglobals)
 mkdir -p "$cfg/qt6ct/colors" "$cfg/gtk-3.0" "$cfg/gtk-4.0"
 backup=$(mktemp -d)
 trap 'rm -rf -- "$backup"' EXIT
@@ -17,6 +17,5 @@ if ! matugen image "$image" -m dark --source-color-index 0 </dev/null; then
   exit 1
 fi
 pkill -USR2 -x waybar || true
-pkill -USR1 -x kitty || true
 makoctl reload || true
 hyprctl eval 'dofile(os.getenv("HOME") .. "/.config/hypr/colors.lua")' || true

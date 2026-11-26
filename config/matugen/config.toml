@@ -2,9 +2,6 @@
 [templates.waybar]
 input_path = "~/.config/matugen/templates/waybar.css"
 output_path = "~/.config/waybar/colors.css"
-[templates.kitty]
-input_path = "~/.config/matugen/templates/kitty.conf"
-output_path = "~/.config/kitty/colors.conf"
 [templates.hypr]
 input_path = "~/.config/matugen/templates/hypr.lua"
 output_path = "~/.config/hypr/colors.lua"
