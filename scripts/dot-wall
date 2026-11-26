@@ -25,6 +25,3 @@ if ! hyprctl hyprpaper wallpaper "$monitor,$image,cover"; then
     exit 1
 fi
 printf '%s\n' "$image" > "$state/$role"
-if [[ "$role" == horizontal ]]; then
-    "$HOME/.local/bin/dot-theme" "$image"
-fi

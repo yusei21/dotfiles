@@ -6,7 +6,6 @@ waybar
 kitty
 fish
 starship
-matugen
 fuzzel
 mako
 cliphist
@@ -39,3 +38,6 @@ playerctl
 hyprpolkitagent
 neovim-lspconfig
 yay
+qt6ct
+adw-gtk-theme
+breeze-icons

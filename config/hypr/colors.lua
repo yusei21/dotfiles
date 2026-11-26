@@ -1,1 +1,1 @@
-hl.config({general={["col.active_border"]="rgba(a7c7d8ff)",["col.inactive_border"]="rgba(29343dff)"}})
+hl.config({general={["col.active_border"]="rgba(d0d0d0ff)",["col.inactive_border"]="rgba(303030ff)"}})

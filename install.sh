@@ -26,6 +26,7 @@ for source in scripts/dot-*; do
     install -m 755 "$source" "$HOME/.local/bin/$name"
     printf '%s\n' "$name" >> "$backup/bin-installed"
 done
+sed -i "s|^color_scheme_path=.*|color_scheme_path=$cfg/qt6ct/colors/monochrome.conf|" "$cfg/qt6ct/qt6ct.conf"
 mkdir -p "$HOME/Pictures/Wallpapers/"{horizontal,vertical}
 git lfs install --skip-repo
 printf 'Finished. Review packages/optional.txt. Use chsh -s /usr/bin/fish for TTY startup.\n'
