@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Low-frequency system metrics with shared sampling state."""
+import json
+import os
+import pathlib
+import subprocess
+import time
+import fcntl
+
+def read(path):
+    try:
+        return pathlib.Path(path).read_text().strip()
+    except OSError:
+        return ""
+
+def cpu():
+    values = [int(x) for x in read("/proc/stat").splitlines()[0].split()[1:9]]
+    return sum(values), values[3] + values[4]
+
+def network():
+    interfaces = {}
+    for line in read("/proc/net/dev").splitlines()[2:]:
+        name, data = line.split(":", 1)
+        if name.strip() == "lo":
+            continue
+        v = data.split()
+        interfaces[name.strip()] = [int(v[0]), int(v[8])]
+    return interfaces
+
+def rate(n):
+    for unit in ("B/s", "KiB/s", "MiB/s", "GiB/s"):
+        if n < 1024 or unit == "GiB/s":
+            return f"{n:.0f} {unit}"
+        n /= 1024
+
+def sample():
+    now = time.monotonic()
+    total, idle = cpu()
+    net = network()
+    root = pathlib.Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / ("dot-stats-" + str(os.getuid()))
+    root.mkdir(mode=0o700, exist_ok=True)
+    with (root / "lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        state = root / "sample.json"
+        try:
+            old = json.loads(state.read_text())
+        except (OSError, ValueError):
+            old = {}
+        dt = now - old.get("time", 0)
+        if 0 <= dt < 2 and "result" in old:
+            return old["result"]
+        delta = total - old.get("total", total)
+        usage = max(0, min(100, round(100 * (1 - (idle-old.get("idle", idle))/delta)))) if delta > 0 else 0
+        rx = tx = 0
+        if 0 < dt < 60:
+            for name, values in net.items():
+                previous = old.get("net", {}).get(name, values)
+                rx += max(0, values[0]-previous[0])/dt
+                tx += max(0, values[1]-previous[1])/dt
+        mem = {line.split(":")[0]: int(line.split()[1]) for line in read("/proc/meminfo").splitlines()}
+        mt = mem["MemTotal"]
+        mu = mt - mem["MemAvailable"]
+        st = mem.get("SwapTotal", 0)
+        su = st - mem.get("SwapFree", 0)
+        temp = "N/A"
+        for sensor in pathlib.Path("/sys/class/hwmon").glob("hwmon*"):
+            if read(sensor / "name") in ("k10temp", "coretemp"):
+                val = read(sensor / "temp1_input")
+                if val.isdigit():
+                    temp = f"{int(val)/1000:.0f}°C"
+                    break
+        freqs = [float(line.split(":")[1]) for line in read("/proc/cpuinfo").splitlines() if line.startswith("cpu MHz")]
+        freq = f"{sum(freqs)/len(freqs)/1000:.1f} GHz" if freqs else "N/A"
+        gpu = vram = gpu_temp = "N/A"
+        try:
+            raw = subprocess.check_output(["nvidia-smi","--query-gpu=temperature.gpu,utilization.gpu,memory.used,memory.total","--format=csv,noheader,nounits"],text=True,timeout=2,stderr=subprocess.DEVNULL)
+            t,u,m,cap = [x.strip() for x in raw.splitlines()[0].split(",")]
+            gpu_temp, gpu, vram = t+"°C", u+"%", f"{m} / {cap} MiB"
+        except (OSError, subprocess.SubprocessError, ValueError, IndexError):
+            pass
+        rows = [("CPU",f"{usage}%"),("CPU Temp",temp),("CPU Freq",freq),("GPU",gpu),("GPU Temp",gpu_temp),("VRAM",vram),("RAM",f"{mu/1048576:.1f} / {mt/1048576:.1f} GiB"),("RAM Usage",f"{100*mu/mt:.0f}%"),("Swap",f"{100*su/st:.0f}%" if st else "0%"),("Download",rate(rx)),("Upload",rate(tx))]
+        result = {"text":f"CPU {usage}%","tooltip":"\n".join(f"{k:<12} {v:>18}" for k,v in rows)}
+        state.write_text(json.dumps({"time":now,"total":total,"idle":idle,"net":net,"result":result}))
+        return result
+
+print(json.dumps(sample()))

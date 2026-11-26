@@ -38,3 +38,4 @@ jq
 playerctl
 hyprpolkitagent
 neovim-lspconfig
+yay

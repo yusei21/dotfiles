@@ -1,3 +1,5 @@
 steam
 discord
 obsidian
+brave-origin-bin
+librewolf

@@ -7,7 +7,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "cpu",
+    "custom/system",
     "memory",
     "wireplumber",
     "network",
@@ -17,13 +17,10 @@
     "format": "{id}",
     "all-outputs": false
   },
-  "cpu": {
-    "format": "CPU {usage}%",
-    "interval": 3
-  },
   "memory": {
     "format": "RAM {percentage}%",
-    "interval": 5
+    "interval": 5,
+    "on-click": "kitty btop"
   },
   "wireplumber": {
     "format": "VOL {volume}%"
@@ -35,5 +32,14 @@
   },
   "clock": {
     "format": "{:%H:%M}"
-  }
+  },
+  "custom/system": {
+    "exec": "$HOME/.local/bin/dot-stats",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty btop",
+    "on-click-right": "kitty nvtop",
+    "tooltip": true
+  },
+  "margin": "5 10 4 10"
 }

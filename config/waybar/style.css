@@ -1,6 +1,8 @@
 @import "colors.css";
-* { font-family: "JetBrains Mono"; font-size: 12px; min-height: 0; }
-window#waybar { background: @bg; color: @fg; }
-#workspaces button { padding: 0 8px; color: @fg; border: none; }
-#workspaces button.active { background: @accent; color: @bg; }
-#clock { padding-right: 10px; }
+* { font-family: "JetBrains Mono"; font-size: 11px; min-height: 0; }
+window#waybar { background: transparent; color: @fg; }
+window#waybar > box { background: @bg; border: 1px solid alpha(@fg, 0.13); border-radius: 10px; padding: 2px 8px; }
+#workspaces button { padding: 0 8px; color: @fg; border: none; border-radius: 6px; }
+#workspaces button.active { background: alpha(@accent, 0.22); color: @fg; }
+tooltip { background: @bg; color: @fg; border: 1px solid alpha(@fg, 0.25); border-radius: 6px; }
+tooltip label { color: @fg; padding: 6px; }
