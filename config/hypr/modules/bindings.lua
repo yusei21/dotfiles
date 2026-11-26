@@ -32,3 +32,7 @@ run("XF86AudioLowerVolume","wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")
 run("XF86AudioMute","wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
 run("XF86AudioPlay","playerctl play-pause")
 run("SUPER + Escape","~/.local/bin/dot-session")
+
+-- Classic mouse-driven movement and resizing.
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
