@@ -1,0 +1,42 @@
+{
+  "blink.cmp": {
+    "branch": "main",
+    "commit": "78336bc89ee5365633bcf754d93df01678b5c08f"
+  },
+  "conform.nvim": {
+    "branch": "master",
+    "commit": "016802de402556da54c36bd7359b441266b01cdd"
+  },
+  "gitsigns.nvim": {
+    "branch": "main",
+    "commit": "166c03131e6a3528f692dd89f37668d991f17baa"
+  },
+  "lazy.nvim": {
+    "branch": "main",
+    "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97"
+  },
+  "neo-tree.nvim": {
+    "branch": "v3.x",
+    "commit": "1a14083046d96e88e361d1da00761c40d45012f3"
+  },
+  "nui.nvim": {
+    "branch": "main",
+    "commit": "10fc361835c856ba4233ef5ea135b919bf3dce97"
+  },
+  "nvim-treesitter": {
+    "branch": "main",
+    "commit": "52773f0d13a0c11d0c3ef33c14ab6ecc1c17148b"
+  },
+  "oil.nvim": {
+    "branch": "master",
+    "commit": "d3733d933833a0e59b813ecec99341527adf0c28"
+  },
+  "plenary.nvim": {
+    "branch": "master",
+    "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b"
+  },
+  "telescope.nvim": {
+    "branch": "master",
+    "commit": "1e1bab730218eaf97fce743be3f56e51075928ac"
+  }
+}
