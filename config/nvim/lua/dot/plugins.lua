@@ -9,7 +9,7 @@ end
 vim.opt.rtp:prepend(path)
 require("lazy").setup("dot.specs", {
   rocks={enabled=false},
-  performance={rtp={paths={vim.fn.stdpath("data") .. "/site"}}},
+  performance={rtp={paths={vim.fn.stdpath("data") .. "/site", "/usr/share/nvim/site/pack/dist/start/lspconfig"}}},
   checker={enabled=false},
   change_detection={notify=false},
   install={colorscheme={"habamax"}},
