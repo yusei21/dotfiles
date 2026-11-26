@@ -1,0 +1,67 @@
+[General]
+ColorScheme=Matugen
+Name=Matugen
+TerminalApplication=kitty
+
+[Colors:Window]
+BackgroundNormal={{colors.surface_container.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+
+[Colors:View]
+BackgroundNormal={{colors.surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+
+[Colors:Button]
+BackgroundNormal={{colors.surface_container.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+
+[Colors:Selection]
+BackgroundNormal={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+
+[Colors:Tooltip]
+BackgroundNormal={{colors.surface_container.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+
+[Colors:Complementary]
+BackgroundNormal={{colors.surface_container.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+
+[Colors:Header]
+BackgroundNormal={{colors.surface_container.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+BackgroundAlternate={{colors.surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundNormal={{colors.on_surface.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundInactive={{colors.on_surface_variant.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+ForegroundLink={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationFocus={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}
+DecorationHover={{colors.primary.default.rgb | replace: "rgb(", "" | replace: ")", ""}}

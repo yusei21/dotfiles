@@ -6,11 +6,11 @@ case "$role" in horizontal) monitor=DP-3;; vertical) monitor=HDMI-A-1;; *) exit 
 dir="$HOME/Pictures/Wallpapers/$role"
 state="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles"
 mkdir -p "$dir" "$state"
-exec 9>"$state/wall.lock"
+exec 9>"$state/$role.lock"
 flock 9
 current=""
 [[ ! -f "$state/$role" ]] || current=$(cat "$state/$role")
-mapfile -d '' -t images < <(find "$dir" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0 | sort -z)
+mapfile -d '' -t images < <(find "$dir" -maxdepth 1 -type f ! -name '*,*' \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0 | sort -z)
 if(( ${#images[@]} == 0 )); then exit 0; fi
 case "$action" in
  restore) image="$current"; [[ -f "$image" ]] || image="${images[0]}";;
