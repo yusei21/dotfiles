@@ -20,8 +20,17 @@ case "$action" in
 esac
 [[ -f "$image" && "$image" == "$dir/"* && "$image" != *,* ]] || exit 2
 # Hyprpaper 0.8.5 may return no text on success.
-if ! hyprctl hyprpaper wallpaper "$monitor,$image,cover"; then
-    notify-send "Wallpaper change failed" "$monitor" || true
-    exit 1
-fi
+# At login, outputs and the Hyprpaper IPC socket may not be ready yet.
+attempts=1
+[[ "$action" != restore ]] || attempts=30
+for ((attempt=1; attempt<=attempts; attempt++)); do
+    if hyprctl hyprpaper wallpaper "$monitor,$image,cover"; then
+        break
+    fi
+    if (( attempt == attempts )); then
+        notify-send "Wallpaper change failed" "$monitor" || true
+        exit 1
+    fi
+    sleep 1
+done
 printf '%s\n' "$image" > "$state/$role"

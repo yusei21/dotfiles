@@ -1,4 +1,5 @@
 if status is-interactive
+    set -g fish_greeting ''
     if type -q starship
         starship init fish | source
     end
@@ -6,7 +7,7 @@ if status is-interactive
         zoxide init fish | source
     end
     if test (tty) = /dev/tty1; and not set -q WAYLAND_DISPLAY; and not set -q DISPLAY; and not set -q SSH_CONNECTION
-        exec Hyprland
+        exec start-hyprland
     end
 end
 function docker-up
