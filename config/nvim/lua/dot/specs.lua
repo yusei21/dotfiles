@@ -1,5 +1,26 @@
 return {
   {
+    "nvim-neo-tree/neo-tree.nvim", branch="v3.x",
+    dependencies={"nvim-lua/plenary.nvim","MunifTanjim/nui.nvim"},
+    cmd="Neotree",
+    keys={
+      {"<C-b>","<cmd>Neotree filesystem toggle left<cr>",desc="Project tree"},
+      {"<leader>b","<cmd>Neotree filesystem toggle left<cr>",desc="Project tree"},
+    },
+    opts={
+      window={position="left",width=32},
+      filesystem={
+        hijack_netrw_behavior="disabled",
+        filtered_items={hide_dotfiles=false,hide_gitignored=false,hide_by_name={".git","node_modules",".venv"}},
+        follow_current_file={enabled=true},
+      },
+      default_component_configs={
+        icon={folder_closed="+",folder_open="-",folder_empty=".",default=" "},
+        git_status={symbols={added="+",modified="~",deleted="-",renamed=">",untracked="?",ignored=".",unstaged="!",staged="+",conflict="!"}},
+      },
+    },
+  },
+  {
     "saghen/blink.cmp", version="1.*", lazy=false,
     opts={
       keymap={preset="default"},
