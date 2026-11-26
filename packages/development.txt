@@ -19,3 +19,9 @@ lua-language-server
 shellcheck
 shfmt
 stylua
+bash-language-server
+vscode-json-languageserver
+yaml-language-server
+typescript
+prettier
+tree-sitter-cli
