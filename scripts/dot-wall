@@ -19,7 +19,11 @@ case "$action" in
  *) exit 2;;
 esac
 [[ -f "$image" && "$image" == "$dir/"* && "$image" != *,* ]] || exit 2
-[[ $(hyprctl hyprpaper wallpaper "$monitor, $image, cover") == ok ]] || exit 1
+# Hyprpaper 0.8.5 may return no text on success.
+if ! hyprctl hyprpaper wallpaper "$monitor,$image,cover"; then
+    notify-send "Wallpaper change failed" "$monitor" || true
+    exit 1
+fi
 printf '%s\n' "$image" > "$state/$role"
 if [[ "$role" == horizontal ]]; then
     "$HOME/.local/bin/dot-theme" "$image"
