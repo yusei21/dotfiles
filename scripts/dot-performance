@@ -2,11 +2,11 @@
 set -euo pipefail
 state="${XDG_RUNTIME_DIR:?}/dot-performance-${HYPRLAND_INSTANCE_SIGNATURE:?}"
 if [[ -e "$state" ]]; then
-  hyprctl eval 'hl.config({decoration={blur={enabled=true},shadow={enabled=true}},animations={enabled=true}})'
+  hyprctl eval 'hl.config({decoration={active_opacity=0.93,inactive_opacity=0.86,blur={enabled=true},shadow={enabled=true}},animations={enabled=true}})'
   rm -- "$state"
   notify-send "Daily mode"
 else
-  hyprctl eval 'hl.config({decoration={blur={enabled=false},shadow={enabled=false}},animations={enabled=false}})'
+  hyprctl eval 'hl.config({decoration={active_opacity=1.0,inactive_opacity=1.0,blur={enabled=false},shadow={enabled=false}},animations={enabled=false}})'
   touch "$state"
   notify-send "Reduced effects"
 fi
