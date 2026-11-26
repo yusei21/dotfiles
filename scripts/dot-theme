@@ -8,7 +8,7 @@ trap 'rm -rf -- "$backup"' EXIT
 for path in "${paths[@]}"; do
   if [[ -f "$cfg/$path" ]]; then mkdir -p "$backup/$(dirname "$path")"; cp -- "$cfg/$path" "$backup/$path"; fi
 done
-if ! matugen image "$image" -m dark; then
+if ! matugen image "$image" -m dark --source-color-index 0 </dev/null; then
   for path in "${paths[@]}"; do
     if [[ -f "$backup/$path" ]]; then cp -- "$backup/$path" "$cfg/$path"; else rm -f -- "$cfg/$path"; fi
   done
