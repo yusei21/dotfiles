@@ -4,7 +4,7 @@ end
 run("SUPER + T","kitty")
 run("SUPER + W","brave-origin")
 run("SUPER + SHIFT + W","librewolf")
-run("SUPER + E","dolphin")
+run("SUPER + E","env QT_QPA_PLATFORMTHEME=qt6ct QT_STYLE_OVERRIDE=Fusion dolphin")
 run("SUPER + D","fuzzel")
 run("SUPER + L","hyprlock")
 run("SUPER + Return","~/.local/bin/dot-wall horizontal next")
