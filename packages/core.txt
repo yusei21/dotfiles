@@ -37,4 +37,4 @@ ttf-jetbrains-mono
 jq
 playerctl
 hyprpolkitagent
-nvim-lspconfig
+neovim-lspconfig
