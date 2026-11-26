@@ -3,5 +3,6 @@ hl.config({
  input={kb_layout="us",kb_variant="altgr-intl"},
  decoration={rounding=14,active_opacity=0.93,inactive_opacity=0.86,fullscreen_opacity=1.0,blur={enabled=true,size=6,passes=2}},
  misc={disable_splash_rendering=true,disable_hyprland_logo=true,force_default_wallpaper=0,background_color="rgb(000000)"},
+ render={send_content_type=false,cm_auto_hdr=0},
  animations={enabled=true}
 })
