@@ -1,0 +1,9 @@
+ms-python.python
+detachhead.basedpyright
+charliermarsh.ruff
+rust-lang.rust-analyzer
+llvm-vs-code-extensions.vscode-clangd
+redhat.java
+esbenp.prettier-vscode
+redhat.vscode-yaml
+ms-azuretools.vscode-docker

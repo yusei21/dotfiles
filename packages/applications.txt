@@ -3,3 +3,4 @@ discord
 obsidian
 brave-origin-bin
 librewolf
+vscodium

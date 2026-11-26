@@ -1,0 +1,114 @@
+{
+  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.iconTheme": null,
+  "workbench.startupEditor": "none",
+  "workbench.colorCustomizations": {
+    "editor.background": "#080808",
+    "editor.foreground": "#eeeeee",
+    "sideBar.background": "#101010",
+    "sideBar.foreground": "#dddddd",
+    "activityBar.background": "#080808",
+    "activityBar.foreground": "#eeeeee",
+    "activityBar.inactiveForeground": "#888888",
+    "statusBar.background": "#161616",
+    "statusBar.foreground": "#eeeeee",
+    "statusBar.noFolderBackground": "#161616",
+    "statusBar.debuggingBackground": "#333333",
+    "titleBar.activeBackground": "#080808",
+    "titleBar.activeForeground": "#eeeeee",
+    "editorGroupHeader.tabsBackground": "#101010",
+    "tab.activeBackground": "#080808",
+    "tab.activeForeground": "#eeeeee",
+    "tab.inactiveBackground": "#161616",
+    "tab.inactiveForeground": "#aaaaaa",
+    "panel.background": "#080808",
+    "terminal.background": "#080808",
+    "terminal.foreground": "#eeeeee",
+    "editorLineNumber.foreground": "#777777",
+    "editorLineNumber.activeForeground": "#eeeeee",
+    "editor.lineHighlightBackground": "#202020",
+    "editor.selectionBackground": "#404040",
+    "list.activeSelectionBackground": "#333333",
+    "list.hoverBackground": "#252525",
+    "focusBorder": "#777777",
+    "editorCursor.foreground": "#eeeeee",
+    "editorWidget.background": "#161616",
+    "editorSuggestWidget.background": "#161616",
+    "editorSuggestWidget.selectedBackground": "#333333",
+    "button.background": "#333333",
+    "button.foreground": "#eeeeee",
+    "button.hoverBackground": "#444444"
+  },
+  "editor.tokenColorCustomizations": {
+    "comments": "#888888",
+    "strings": "#cccccc",
+    "keywords": "#eeeeee",
+    "numbers": "#bbbbbb",
+    "types": "#dddddd",
+    "functions": "#eeeeee",
+    "variables": "#dddddd"
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "rules": {
+      "*": "#dddddd",
+      "comment": "#888888",
+      "keyword": "#eeeeee",
+      "string": "#cccccc",
+      "number": "#bbbbbb"
+    }
+  },
+  "editor.fontFamily": "'JetBrains Mono', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "selection",
+  "editor.bracketPairColorization.enabled": false,
+  "editor.guides.bracketPairs": false,
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "terminal.integrated.profiles.linux": {
+    "fish": {
+      "path": "/usr/bin/fish"
+    }
+  },
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false,
+  "workbench.enableExperiments": false,
+  "update.mode": "none",
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+  "git.autofetch": false,
+  "rust-analyzer.server.path": "rust-analyzer",
+  "clangd.path": "clangd",
+  "clangd.checkUpdates": false,
+  "ruff.importStrategy": "fromEnvironment",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
