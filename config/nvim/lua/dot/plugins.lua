@@ -8,6 +8,8 @@ if not vim.uv.fs_stat(path) then
 end
 vim.opt.rtp:prepend(path)
 require("lazy").setup("dot.specs", {
+  rocks={enabled=false},
+  performance={rtp={paths={vim.fn.stdpath("data") .. "/site"}}},
   checker={enabled=false},
   change_detection={notify=false},
   install={colorscheme={"habamax"}},
